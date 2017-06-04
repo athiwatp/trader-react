@@ -13,6 +13,8 @@ class Stock extends Component {
             <div className="stock">
                 <p>{stock.symbol}</p>
                 <p>{stock.price}</p>
+                <p>{stock.qty}</p>
+                <p>{stock.date}</p>
             </div>
         )
     }

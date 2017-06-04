@@ -18,12 +18,19 @@ class TraderApp extends Component {
 
     saveTransaction(txn) {
         let stocks = this.state.stocks;
-        stocks.push(txn);
-        this.setState(stocks);
+        if (this.isValidTransaction(txn)) {
+            txn.id = txn.id || this.guid();
+            stocks.push(txn);
+            this.setState(stocks);
+        }
+
     }
 
     isValidTransaction(txn) {
-
+        return txn.symbol.length > 0
+            && txn.price > 0
+            && txn.qty > 0
+            && txn.date.length > 0;
     }
 
     guid() {
