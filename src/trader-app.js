@@ -4,16 +4,23 @@ import "./trader-app.css";
 import TransactionForm from "./components/transaction-form";
 import Portfolio from "./components/portfolio";
 
+const STORAGE_KEY = 'traderState';
+
 class TraderApp extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            stocks: []
-        };
+        this.state = (this.syncFromStorage()) || {
+                stocks: []
+            };
 
         this.saveTransaction = this.saveTransaction.bind(this);
+        this.syncFromStorage = this.syncFromStorage.bind(this);
+    }
+
+    componentWillMount() {
+
     }
 
     saveTransaction(txn) {
@@ -22,8 +29,16 @@ class TraderApp extends Component {
             txn.id = txn.id || this.guid();
             stocks.push(txn);
             this.setState(stocks);
+            this.syncToStorage(this.state);
         }
+    }
 
+    syncToStorage(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    syncFromStorage() {
+        return JSON.parse(localStorage.getItem('traderState'));
     }
 
     isValidTransaction(txn) {
