@@ -24,13 +24,14 @@ class TransactionForm extends Component {
         return (
             <form className="transaction-form" onSubmit={this.save}>
                 <input
-                    pattern="[a-z]"
                     id="symbol"
                     type="text"
                     defaultValue={txn.symbol}
                     placeholder="Symbol"
                     className="input-field symbol"
                     ref={(elm) => this.symbolElm = elm}
+                    pattern="[a-zA-Z]+"
+                    required='required'
                 />
                 <input
                     id="price"
@@ -39,6 +40,8 @@ class TransactionForm extends Component {
                     placeholder="Price"
                     className="input-field price"
                     ref={(elm) => this.priceELm = elm}
+                    pattern="^\d{0,8}(\.\d{1,4})?$"
+                    required='required'
                 />
                 <input
                     id="quantity"
@@ -47,6 +50,8 @@ class TransactionForm extends Component {
                     placeholder="Qty"
                     className="input-field qty"
                     ref={(elm) => this.qtyElm = elm}
+                    pattern="^\d{0,8}$"
+                    required='required'
                 />
                 <input
                     id="date"
@@ -55,6 +60,8 @@ class TransactionForm extends Component {
                     placeholder="DD/MM/YYYY"
                     className="input-field date"
                     ref={(elm) => this.dateElm = elm}
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    required='required'
                 />
                 <input
                     d="btn-submit"
