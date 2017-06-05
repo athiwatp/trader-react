@@ -1,0 +1,17 @@
+.stock {
+    display: flex;
+    margin: 10px 0;
+}
+
+.stock .cell {
+    margin-right: 10px;
+}
+
+.stock .cell:last-child {
+    margin-right: 0;
+}
+
+.stock .symbol {
+    text-transform: uppercase;
+}
+
