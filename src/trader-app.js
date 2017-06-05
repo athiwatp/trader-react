@@ -18,7 +18,8 @@ class TraderApp extends Component {
         this.updatePortfolio = this.updatePortfolio.bind(this);
 
         this.state = (this.syncFromStorage()) || {
-                stocks: []
+                stocks: [],
+                txn: {}
             };
     }
 
@@ -31,7 +32,10 @@ class TraderApp extends Component {
         if (this.isValidTransaction(txn)) {
             txn.id = txn.id || this.guid();
             stocks.push(txn);
-            this.setState(stocks);
+            this.setState({
+                stocks: stocks,
+                txn: {}
+            });
             this.syncToStorage(this.state);
             this.fetchMarketData();
         }
@@ -94,7 +98,7 @@ class TraderApp extends Component {
                 <h1>Trader App</h1>
                 <button onClick={this.fetchMarketData}>Refresh</button>
                 <hr/>
-                <TransactionForm txn={''} onSave={this.saveTransaction}/>
+                <TransactionForm txn={this.state.txn} onSave={this.saveTransaction}/>
                 <Portfolio stocks={this.state.stocks}/>
             </div>
         )

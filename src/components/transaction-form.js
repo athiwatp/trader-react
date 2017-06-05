@@ -6,6 +6,7 @@ class TransactionForm extends Component {
     constructor(props) {
         super(props);
         this.save = this.save.bind(this);
+        this.clear = this.clear.bind(this);
     }
 
     save(e) {
@@ -17,6 +18,14 @@ class TransactionForm extends Component {
             date: this.dateElm.value || ''
         };
         this.props.onSave(txn);
+        this.clear();
+    }
+
+    clear() {
+        this.symbolElm.value = '';
+        this.priceELm.value = '';
+        this.qtyElm.value = '';
+        this.dateElm.value = '';
     }
 
     render() {

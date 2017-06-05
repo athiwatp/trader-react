@@ -10,7 +10,7 @@ class Stock extends Component {
         return (
             <div className="stock">
                 <p className="symbol cell">{stock.symbol}</p>
-                <p className="current-price cell">{stock.currentPrice}</p>
+                <p className="current-price cell">{stock.currentPrice || stock.price}</p>
                 <p className="price cell">{stock.price}</p>
                 <p className="qty cell">{stock.qty}</p>
                 <p className="date cell">{stock.date}</p>
