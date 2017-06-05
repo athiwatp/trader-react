@@ -95,9 +95,6 @@ class TraderApp extends Component {
     render() {
         return (
             <div className="app">
-                <h1>Trader App</h1>
-                <button onClick={this.fetchMarketData}>Refresh</button>
-                <hr/>
                 <TransactionForm txn={this.state.txn} onSave={this.saveTransaction}/>
                 <Portfolio stocks={this.state.stocks}/>
             </div>

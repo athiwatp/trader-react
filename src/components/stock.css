@@ -1,17 +1,56 @@
 .stock {
-    display: flex;
-    margin: 10px 0;
+    margin: 30px 0;
+    font-weight: 300;
+    color: #666666;
+    font-size: .9rem;
 }
 
-.stock .cell {
+.stock .investment {
+    margin-bottom: 10px;
+}
+
+.stock .return.loss {
+    color: #e74c3c;
+}
+
+.stock .return.gain {
+    color:#27ae60;
+}
+
+.stock .separator:after {
+    display: inline-block;
+    content: '/';
     margin-right: 10px;
-}
-
-.stock .cell:last-child {
-    margin-right: 0;
+    color: #34495e;
 }
 
 .stock .symbol {
     text-transform: uppercase;
+    margin-right: 10px;
+    color: #bdc3c7;
+}
+
+.stock .cost {
+    color: #999999;
+    margin-right: 10px;
+}
+
+.stock .age {
+    color: #999999;
+}
+
+.stock .return {
+    font-size: 1.5rem;
+}
+
+.stock .current-price {
+    margin-right: 10px;
+}
+
+.stock .profit {
+    margin-right: 10px;
+}
+
+.stock .value {
 }
 
