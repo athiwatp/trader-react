@@ -74,7 +74,7 @@ class TraderApp extends Component {
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
             fetch(quoteURL, {'mode': 'no-cors'}).then((resp) => {
-                return resp.text();
+                return resp.text().trim();
             }).then((text) => {
                 this.updatePortfolio(JSON.parse(text.substr(4)));
             });
