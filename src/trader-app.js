@@ -5,7 +5,7 @@ import TransactionForm from "./components/transaction-form";
 import Portfolio from "./components/portfolio";
 
 const STORAGE_KEY = 'traderState';
-const GOOGLE_FINANCE = 'http://finance.google.com/finance/info?q=';
+const GOOGLE_FINANCE = 'https://finance.google.com/finance/info?q=';
 
 class TraderApp extends Component {
 
