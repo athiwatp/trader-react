@@ -73,10 +73,12 @@ class TraderApp extends Component {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
-            fetch(quoteURL, {'mode': 'no-cors'}).then((resp) => {
-                return resp.text().trim();
+            fetch(quoteURL, {mode: 'no-cors'}).then((resp) => {
+                return resp.text();
             }).then((text) => {
-                this.updatePortfolio(JSON.parse(text.substr(4)));
+                text = text.trim();
+                text = text.substr(text.indexOf('//') + 3 );
+                this.updatePortfolio(JSON.parse(text));
             });
         }
     }
