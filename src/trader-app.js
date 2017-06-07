@@ -16,6 +16,7 @@ class TraderApp extends Component {
         this.syncFromStorage = this.syncFromStorage.bind(this);
         this.fetchMarketData = this.fetchMarketData.bind(this);
         this.updatePortfolio = this.updatePortfolio.bind(this);
+        this.deleteStock = this.deleteStock.bind(this);
 
         this.state = (this.syncFromStorage()) || {
                 stocks: [],
@@ -41,8 +42,20 @@ class TraderApp extends Component {
         }
     }
 
+    deleteStock(id) {
+        let stocks = this.state.stocks.filter((s) => s.id !== id);
+        this.setState({
+            stocks: stocks
+        }, () => {
+            this.syncToStorage(this.state);
+        });
+
+    }
+
     syncToStorage(state) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        if(!!state) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
     }
 
     syncFromStorage() {
@@ -96,7 +109,10 @@ class TraderApp extends Component {
         return (
             <div className="app">
                 <TransactionForm txn={this.state.txn} onSave={this.saveTransaction}/>
-                <Portfolio stocks={this.state.stocks}/>
+                <Portfolio
+                    stocks={this.state.stocks}
+                    onDeleteStock={this.deleteStock}
+                />
             </div>
         )
     }

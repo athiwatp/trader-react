@@ -7,7 +7,7 @@ class Portfolio extends Component {
         return (
             <div className="portfolio">
                 {
-                    this.props.stocks.map((stock) => <Stock key={stock.id} stock={stock}/>)
+                    this.props.stocks.map((stock) => <Stock key={stock.id} stock={stock} {...this.props} />)
                 }
             </div>
         )
