@@ -27,16 +27,17 @@
 .stock .symbol {
     text-transform: uppercase;
     margin-right: 10px;
-    color: #bdc3c7;
+    color: #333333;
+    font-weight: bold;
 }
 
 .stock .cost {
-    color: #999999;
+    color: #666666;
     margin-right: 10px;
 }
 
 .stock .age {
-    color: #999999;
+    color: #666666;
 }
 
 .stock .return {
