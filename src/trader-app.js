@@ -6,6 +6,7 @@ import Portfolio from "./components/portfolio";
 
 const STORAGE_KEY = 'traderState';
 const GOOGLE_FINANCE = 'https://finance.google.com/finance/info?q=';
+const JUNK_PREFIX = '//';
 
 class TraderApp extends Component {
 
@@ -53,7 +54,7 @@ class TraderApp extends Component {
     }
 
     syncToStorage(state) {
-        if(!!state) {
+        if (!!state) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         }
     }
@@ -69,16 +70,26 @@ class TraderApp extends Component {
             && txn.date.length > 0;
     }
 
+    isLocalhost() {
+        return (window.location.hostname === 'localhost');
+    }
+
     fetchMarketData() {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
-            fetch(quoteURL, {mode: 'no-cors'}).then((resp) => {
-                return resp.text();
-            }).then((text) => {
-                text = text.trim();
-                text = text.substr(text.indexOf('//') + 3 );
-                this.updatePortfolio(JSON.parse(text));
+            let options = this.isLocalhost() ? {} : {
+                mode: 'no-cors'
+            };
+            fetch(quoteURL, options).then(r => r.text()).then((text) => {
+                console.log(text);
+                if (text) {
+                    text = text.substr(text.indexOf(JUNK_PREFIX) + JUNK_PREFIX.length);
+                    text = text.trim();
+                    this.updatePortfolio(JSON.parse(text));
+                } else {
+                    console.warn('Unable to fetch market data');
+                }
             });
         }
     }
@@ -102,6 +113,7 @@ class TraderApp extends Component {
 
     guid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            // eslint-disable-next-line
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
