@@ -1,74 +1,51 @@
 .stock {
-    position: relative;
-    margin: 30px 0;
-    font-weight: 300;
-    color: #666666;
-    font-size: .9rem;
+    display: flex;
+    padding: 10px 0;
 }
 
 .stock .investment {
-    margin-bottom: 10px;
+    width: 60%;
 }
 
-.stock .return.loss {
-    color: #e74c3c;
-}
-
-.stock .return.gain {
-    color:#27ae60;
-}
-
-.stock .separator:after {
-    display: inline-block;
-    content: '/';
-    margin-right: 10px;
-    color: #34495e;
+.stock .market {
+    width: 40%;
 }
 
 .stock .symbol {
-    text-transform: uppercase;
-    margin-right: 10px;
-    color: #333333;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
-.stock .cost {
-    color: #666666;
-    margin-right: 10px;
+.market .price {
+    font-size: 1.7rem;
+}
+.market .change {
+    margin-top: 5px;
+    font-weight: 300;
+    font-size: 1rem;
 }
 
-.stock .age {
-    color: #666666;
+.market .change em {
+    font-size: .7rem;
+    margin-left: 5px;
 }
 
-.stock .return {
-    font-size: 1.5rem;
+.market .change.positive {
+    color: #0f0;
 }
 
-.stock .current-price {
-    margin-right: 10px;
-}
-
-.stock .profit {
-    margin-right: 10px;
-}
-
-.stock .value {
-}
-
-.stock .actions {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.stock .actions li {
-    cursor: pointer;
-    background-color: #555;
-    color: #fff;
-    padding: 5px 6px;
-    border-radius: 50%;
-    font-size: .5rem;
+.change:before {
+    margin-right: 5px;
     font-weight: 300;
 }
+.change.positive:before {
+    content: '▲';
+}
 
+.market .change.negative {
+    color: #f00;
+}
+
+.change.negative:before {
+    content: '▼';
+}

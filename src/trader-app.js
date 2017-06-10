@@ -82,26 +82,29 @@ class TraderApp extends Component {
                 mode: 'no-cors'
             };
             fetch(quoteURL, options).then(r => r.text()).then((text) => {
-                console.log(text);
                 if (text) {
                     text = text.substr(text.indexOf(JUNK_PREFIX) + JUNK_PREFIX.length);
                     text = text.trim();
                     this.updatePortfolio(JSON.parse(text));
-                } else {
-                    console.warn('Unable to fetch market data');
                 }
+            }).catch((error) => {
+                console.error('Unable to fetch market data', error);
             });
         }
     }
 
     updatePortfolio(marketData) {
+        console.log(marketData);
         if (marketData) {
-            let cp = marketData.reduce((memo, s) => {
-                memo[s.t] = s.l;
+            let symbols = marketData.reduce((memo, s) => {
+                memo[s.t] = s;
                 return memo;
             }, {});
             let stocks = this.state.stocks.map((s) => {
-                s['currentPrice'] = cp[s.symbol];
+                let symbol = symbols[s.symbol];
+                s['currentPrice'] = symbol.l;
+                s['change'] = symbol.c;
+                s['changePercent'] = symbol.cp;
                 return s;
             });
             this.setState({

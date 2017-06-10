@@ -1,6 +1,8 @@
 import React, {Component} from "react";
+import classnames from "classnames";
 import "./stock.css";
 
+let CURRENCY = '₹';
 class Stock extends Component {
 
     constructor(props) {
@@ -30,26 +32,23 @@ class Stock extends Component {
         let inLoss = (profit < 0);
         let daysOld = this.daysOld(stock.date);
         let profitPercent = Math.ceil((100 * profit) / cost);
+
+        let changeClassNames = classnames({
+            change: true,
+            negative: stock.changePercent < 0,
+            positive: stock.changePercent >= 0
+        });
         return (
             <div className="stock">
                 <div className="investment">
-                    <span className="symbol">{stock.symbol}</span>
-                    <i className="separator"/>
-                    <span
-                        className="cost">{`${stock.qty} * ₹${stock.price} = ₹${(stock.qty * stock.price).toLocaleString()}`}</span>
-                    <i className="separator"/>
-                    <span className="age">{daysOld} days</span>
+                    <h2 className="symbol">{stock.symbol}</h2>
                 </div>
-                <div className={`return ${inLoss ? 'loss' : 'gain'}`}>
-                    <span className="current-price">₹{stock.currentPrice}</span>
-                    <i className="separator"/>
-                    <span className="profit">₹{profit.toLocaleString()}</span>
-                    <i className="separator"/>
-                    <span className="profit-percent">{profitPercent}%</span>
+                <div className="market">
+                    <p className="price">{CURRENCY + stock.currentPrice}</p>
+                    <p className={changeClassNames}>{CURRENCY + stock.change} <em>(% {stock.changePercent})</em></p>
                 </div>
-                <ul className="actions">
-                    <li onClick={this.deleteStock}>X</li>
-                </ul>
+                <div className="return">
+                </div>
             </div>
         )
     }
