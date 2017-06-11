@@ -1,77 +1,20 @@
 .stock {
     display: flex;
-    padding: 20px 10px;
-    margin: 10px;
-    color: #333333;
     background-color: #ffffff;
     box-shadow: 0 1px 2px #eee;
     border: 1px solid #eeeeee;
     border-radius: 3px;
 }
-
-.stock .investment {
-    width: 70%;
+.stock > * {
+    flex: 1;
+    text-align: center;
 }
 
-.investment .profit {
-    margin-top: 10px;
-    font-size: .9rem;
+.details {
+    background-color: #fafafa;
 }
 
-.profit.up {
-    color: #093;
-}
-
-.profit.down {
-    color: #d14836;
-}
-
-.stock .market {
-    width: 30%;
-}
-
-.stock .symbol {
-    font-size: 1rem;
+.details .symbol {
+    font-size: .8rem;
     font-weight: bold;
-}
-
-.stock .symbol .quantity {
-    font-size: 1rem;
-    color: #999;
-    font-weight: 300;
-}
-
-.quantity i {
-    color: #666666;
-}
-
-.market .price {
-    font-size: 1.3rem;
-}
-
-.market .change {
-    margin-top: 10px;
-    font-weight: 300;
-    font-size: .91rem;
-}
-
-.market .change.up {
-    color: #093;
-}
-
-.change:before {
-    margin-right: 5px;
-    font-weight: 300;
-}
-
-.change.up:before {
-    content: '▲';
-}
-
-.market .change.down {
-    color: #d14836;
-}
-
-.change.down:before {
-    content: '▼';
 }

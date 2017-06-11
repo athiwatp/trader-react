@@ -39,12 +39,14 @@ class Stock extends Component {
         let profitPercent = Math.ceil((100 * profit) / cost);
 
         let changeClassNames = classnames({
+            value: true,
             change: true,
             down: stock.changePercent < 0,
             up: stock.changePercent >= 0
         });
 
         let profitClassNames = classnames({
+            value: true,
             profit: true,
             down: profit < 0,
             up: profit > 0
@@ -52,14 +54,29 @@ class Stock extends Component {
         return (
             <div className="stock">
                 <div className="investment">
-                    <h2 className="symbol">{stock.symbol} <em className="quantity">(<i>{stock.qty}</i> / {this.currency(cost)})</em></h2>
-                    <p className={profitClassNames}>{this.currency(value)} (<em>%{profitPercent}</em>)</p>
+                    <p className="cost">
+                        {this.currency(cost)}
+                    </p>
+                    <p className="age">
+                        {daysOld} days
+                    </p>
                 </div>
-                <div className="market">
-                    <p className="price">{this.currency(stock.currentPrice)}</p>
-                    <p className={changeClassNames}>{this.currency(stock.change)}</p>
+                <div className="details">
+                    <p className="symbol">
+                        {stock.symbol}
+                    </p>
+                    <p className="market">
+                        <i className="price">{this.currency(stock.currentPrice)}</i>
+                        <i className={changeClassNames}>{stock.change}</i>
+                    </p>
+                    <p className={profitClassNames}>
+                        {this.currency(profit)}
+                    </p>
                 </div>
                 <div className="return">
+                    <p className="worth">
+                        {this.currency(value)}
+                    </p>
                 </div>
             </div>
         )
