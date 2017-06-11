@@ -1,13 +1,29 @@
 .stock {
     display: flex;
-    padding: 10px;
-    margin: 0 -10px;
+    padding: 20px 10px;
+    margin: 10px;
     color: #333333;
-    border-bottom: 1px solid #eeeeee;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 3px;
 }
 
 .stock .investment {
     width: 70%;
+}
+
+.investment .profit {
+    margin-top: 10px;
+    font-size: .9rem;
+}
+
+.profit.up {
+    color: #093;
+}
+
+.profit.down {
+    color: #d14836;
 }
 
 .stock .market {
@@ -15,12 +31,24 @@
 }
 
 .stock .symbol {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.stock .symbol .quantity {
+    font-size: 1rem;
+    color: #999;
+    font-weight: 300;
+}
+
+.quantity i {
+    color: #666666;
 }
 
 .market .price {
     font-size: 1.3rem;
 }
+
 .market .change {
     margin-top: 10px;
     font-weight: 300;
@@ -35,6 +63,7 @@
     margin-right: 5px;
     font-weight: 300;
 }
+
 .change.up:before {
     content: '▲';
 }
