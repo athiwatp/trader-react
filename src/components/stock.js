@@ -35,8 +35,8 @@ class Stock extends Component {
 
         let changeClassNames = classnames({
             change: true,
-            negative: stock.changePercent < 0,
-            positive: stock.changePercent >= 0
+            down: stock.changePercent < 0,
+            up: stock.changePercent >= 0
         });
         return (
             <div className="stock">
@@ -45,7 +45,7 @@ class Stock extends Component {
                 </div>
                 <div className="market">
                     <p className="price">{CURRENCY + stock.currentPrice}</p>
-                    <p className={changeClassNames}>{CURRENCY + stock.change} <em>(% {stock.changePercent})</em></p>
+                    <p className={changeClassNames}>{CURRENCY + stock.change}</p>
                 </div>
                 <div className="return">
                 </div>
