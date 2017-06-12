@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     background-color: #ffffff;
-    box-shadow: 0 1px 2px #eee;
+    box-shadow: 0 1px 2px #ccc;
     border: 1px solid #eeeeee;
     border-radius: 3px;
     margin-top: 10px;
@@ -50,28 +50,6 @@
     transform: translate(-50%, -50%);
 }
 
-.volatile-value.up {
-    color: #27ae60;
-}
-
-.volatile-value.down {
-    color: #e74c3c;
-}
-
-.volatile-value:after {
-    font-size: .8rem;
-    margin-right: 3px;
-}
-
-.volatile-value.up:after {
-    content: '▲';
-    color: #27ae60;
-}
-
-.volatile-value.down:after {
-    content: '▼';
-    color: #e74c3c;
-}
 
 .investment {
 }

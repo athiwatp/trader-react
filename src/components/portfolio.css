@@ -1,0 +1,9 @@
+.wealth {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.wealth .current {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
