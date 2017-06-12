@@ -94,18 +94,23 @@ class TraderApp extends Component {
     }
 
     updatePortfolio(marketData) {
-        console.log(marketData);
         if (marketData) {
             let symbols = marketData.reduce((memo, s) => {
                 memo[s.t] = s;
                 return memo;
             }, {});
+            console.log(symbols);
             let stocks = this.state.stocks.map((s) => {
                 let symbol = symbols[s.symbol];
-                s['currentPrice'] = symbol.l;
-                s['change'] = symbol.c;
-                s['changePercent'] = symbol.cp;
-                return s;
+                if(symbol) {
+                    s['currentPrice'] = symbol.l;
+                    s['change'] = symbol.c;
+                    s['changePercent'] = symbol.cp;
+                    return s;
+                } else {
+                    console.log(s.symbol);
+                    return {}
+                }
             });
             this.setState({
                 stocks: stocks

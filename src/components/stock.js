@@ -22,7 +22,7 @@ class Stock extends Component {
         return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
     }
 
-    currency(value) {
+    currency(value = 0) {
         return (CURRENCY + value.toLocaleString());
     }
 
@@ -38,6 +38,7 @@ class Stock extends Component {
         let profit = value - cost;
         let daysOld = this.daysOld(stock.date);
         let profitPercent = Math.ceil((100 * profit) / cost);
+        let changeInPrice = stock.currentPrice - stock.price;
 
         let priceChangeClassNames = classnames({
             'volatile-value': true,
@@ -46,24 +47,35 @@ class Stock extends Component {
             up: stock.changePercent >= 0
         });
 
-        let profitClassNames = classnames({
+        let changeInPriceClassNames = classnames({
             'volatile-value': true,
-            profit: true,
+            'change-in-price': true,
+            down: changeInPrice < 0,
+            up: changeInPrice > 0
+        });
+
+        let profitChangeClassNames = classnames({
+            'volatile-value': true,
+            'profit-change': true,
             down: profit < 0,
             up: profit > 0
         });
+
         return (
             <div className="stock">
-                <div className="investment">
+                <div className="investment line-items">
+                    <p className="bought-price">
+                        {this.currency(stock.price)}
+                    </p>
                     <p className="cost">
                         {this.currency(cost)}
                     </p>
                     <p className="age">
-                        {daysOld} days
+                        {daysOld} days ago
                     </p>
                 </div>
                 <div className="details">
-                    <RadialProgress className="profit-meter" value='60'/>
+                    <RadialProgress className="profit-meter" value={profitPercent}/>
                     <div className="content">
                         <p className="symbol">
                             {stock.symbol}
@@ -76,11 +88,20 @@ class Stock extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="return">
-                    <p className="worth">
+                <div className="return line-items">
+                    <p className={changeInPriceClassNames}>
+                        {(stock.currentPrice - stock.price).toFixed(2)}
+                    </p>
+                    <p className="current-value">
                         {this.currency(value)}
                     </p>
+                    <p className={profitChangeClassNames}>
+                        {this.currency(profit)}
+                    </p>
                 </div>
+                <ul className="actions">
+                    <li onClick={this.props.onDelete}>X</li>
+                </ul>
             </div>
         )
     }
