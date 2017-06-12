@@ -34,19 +34,18 @@ class Stock extends Component {
         let cost = stock.qty * stock.price;
         let value = stock.qty * stock.currentPrice;
         let profit = value - cost;
-        let inLoss = (profit < 0);
         let daysOld = this.daysOld(stock.date);
         let profitPercent = Math.ceil((100 * profit) / cost);
 
-        let changeClassNames = classnames({
-            value: true,
-            change: true,
+        let priceChangeClassNames = classnames({
+            'volatile-value': true,
+            'price-change': true,
             down: stock.changePercent < 0,
             up: stock.changePercent >= 0
         });
 
         let profitClassNames = classnames({
-            value: true,
+            'volatile-value': true,
             profit: true,
             down: profit < 0,
             up: profit > 0
@@ -62,16 +61,22 @@ class Stock extends Component {
                     </p>
                 </div>
                 <div className="details">
-                    <p className="symbol">
-                        {stock.symbol}
-                    </p>
-                    <p className="market">
-                        <i className="price">{this.currency(stock.currentPrice)}</i>
-                        <i className={changeClassNames}>{stock.change}</i>
-                    </p>
-                    <p className={profitClassNames}>
-                        {this.currency(profit)}
-                    </p>
+                    <svg className="radial-progress" width="120" height="120" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" strokeWidth="12"/>
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="#f77a52" strokeWidth="12"
+                                strokeDasharray="339.292" strokeDashoffset="135.717"/>
+                    </svg>
+                    <div className="content">
+                        <p className="symbol">
+                            {stock.symbol}
+                        </p>
+                        <p className="market-price">
+                            {this.currency(stock.currentPrice)}
+                        </p>
+                        <p className={priceChangeClassNames}>
+                            {stock.change}
+                        </p>
+                    </div>
                 </div>
                 <div className="return">
                     <p className="worth">
