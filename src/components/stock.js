@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import classnames from "classnames";
 import "./stock.css";
+import Utils from "../utils";
 
 import RadialProgress from './radial-progress';
 
-let CURRENCY = '₹';
 class Stock extends Component {
 
     constructor(props) {
@@ -20,10 +20,6 @@ class Stock extends Component {
         let firstDate = new Date(parts[2], parts[1], parts[0]);
         let secondDate = new Date();
         return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-    }
-
-    currency(value = 0) {
-        return (CURRENCY + value.toLocaleString());
     }
 
     deleteStock() {
@@ -65,10 +61,10 @@ class Stock extends Component {
             <div className="stock">
                 <div className="investment line-items">
                     <p className="bought-price">
-                        {this.currency(stock.price)}
+                        {Utils.currency(stock.price)}
                     </p>
                     <p className="cost">
-                        {this.currency(cost)}
+                        {Utils.currency(cost)}
                     </p>
                     <p className="age">
                         {daysOld} days ago
@@ -81,7 +77,7 @@ class Stock extends Component {
                             {stock.symbol}
                         </p>
                         <p className="market-price">
-                            {this.currency(stock.currentPrice)}
+                            {Utils.currency(stock.currentPrice)}
                         </p>
                         <p className={priceChangeClassNames}>
                             {stock.change}
@@ -93,10 +89,10 @@ class Stock extends Component {
                         {(stock.currentPrice - stock.price).toFixed(2)}
                     </p>
                     <p className="current-value">
-                        {this.currency(value)}
+                        {Utils.currency(value)}
                     </p>
                     <p className={profitChangeClassNames}>
-                        {this.currency(profit)}
+                        {Utils.currency(profit)}
                     </p>
                 </div>
                 <ul className="actions">
