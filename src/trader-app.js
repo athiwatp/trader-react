@@ -99,7 +99,6 @@ class TraderApp extends Component {
                 memo[s.t] = s;
                 return memo;
             }, {});
-            console.log(symbols);
             let stocks = this.state.stocks.map((s) => {
                 let symbol = symbols[s.symbol];
                 if(symbol) {
@@ -108,7 +107,6 @@ class TraderApp extends Component {
                     s['changePercent'] = symbol.cp;
                     return s;
                 } else {
-                    console.log(s.symbol);
                     return {}
                 }
             });

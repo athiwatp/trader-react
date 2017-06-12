@@ -100,7 +100,7 @@ class Stock extends Component {
                     </p>
                 </div>
                 <ul className="actions">
-                    <li onClick={this.props.onDelete}>X</li>
+                    <li onClick={this.deleteStock}>X</li>
                 </ul>
             </div>
         )
