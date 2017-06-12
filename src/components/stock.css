@@ -41,14 +41,6 @@
     margin-top: 5px;
 }
 
-.details .progress {
-    transform: rotate(-90deg);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-}
-
 .details .content {
     position: absolute;
     top: 50%;
