@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+
 import "./trader-app.css";
 
 import TransactionForm from "./components/transaction-form";
@@ -101,7 +103,7 @@ class TraderApp extends Component {
             }, {});
             let stocks = this.state.stocks.map((s) => {
                 let symbol = symbols[s.symbol];
-                if(symbol) {
+                if (symbol) {
                     s['currentPrice'] = symbol.l;
                     s['change'] = symbol.c;
                     s['changePercent'] = symbol.cp;
@@ -127,13 +129,23 @@ class TraderApp extends Component {
 
     render() {
         return (
-            <div className="app">
-                <TransactionForm txn={this.state.txn} onSave={this.saveTransaction}/>
-                <Portfolio
-                    stocks={this.state.stocks}
-                    onDeleteStock={this.deleteStock}
-                />
-            </div>
+            <Router>
+                <div className="app">
+                    <h1 className="app-title">Trader</h1>
+                    <ul className="main-menu">
+                        <li>
+                            <Link to="/stock/add">+</Link>
+                        </li>
+                    </ul>
+                    <Route exact path="/" render={() => <Portfolio
+                        stocks={this.state.stocks}
+                        onDeleteStock={this.deleteStock}
+                    />}/>
+                    <Route path="/stock/add"
+                           render={() => <TransactionForm txn={this.state.txn} onSave={this.saveTransaction}/> }/>
+
+                </div>
+            </Router>
         )
     }
 }

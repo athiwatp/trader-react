@@ -1,4 +1,5 @@
 .app {
+    position: relative;
     color: #333333;
     padding: 10px;
     font-family: 'Roboto Condensed', sans-serif;
@@ -25,4 +26,21 @@
 .volatile-value.down:after {
     content: '▼';
     color: #e74c3c;
+}
+
+.app-title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.main-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+}
+
+.main-menu a {
+    text-decoration: none;
 }

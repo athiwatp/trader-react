@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import Stock from "./stock";
-import Utils from '../utils';
-import classnames from 'classnames';
-import './portfolio.css';
+import Utils from "../utils";
+import classnames from "classnames";
+import "./portfolio.css";
 
 class Portfolio extends Component {
 
@@ -27,8 +27,12 @@ class Portfolio extends Component {
         return (
             <div className="portfolio">
                 <div className="wealth">
-                    <em className="current">{Utils.currency(wealth.current)}</em>
-                    <em className={wealthChangeClassNames}> {wealthChange.toLocaleString()}</em>
+                    <p className="current">
+                        {Utils.currency(wealth.current)}
+                    </p>
+                    <p className={wealthChangeClassNames}>
+                        {wealthChange.toLocaleString()}
+                    </p>
                 </div>
                 {
                     this.props.stocks.map((stock) => <Stock key={stock.id} stock={stock} {...this.props} />)

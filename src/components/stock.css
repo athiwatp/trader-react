@@ -2,17 +2,18 @@
     position: relative;
     display: flex;
     background-color: #ffffff;
-    box-shadow: 0 1px 2px #ccc;
-    border: 1px solid #eeeeee;
-    border-radius: 3px;
-    margin-top: 10px;
-    padding: 10px 0;
+    border-bottom: 1px solid #e9d460;
+    padding: 20px 0;
     color: #4d4d4d;
 }
 
 .stock > * {
     flex: 1;
     text-align: center;
+}
+
+.stock:first-child {
+    margin-top: 0;
 }
 
 .details {
@@ -38,6 +39,7 @@
     font-weight: 300;
     margin-top: 10px;
 }
+
 .price-change {
     font-size: .8rem;
     margin-top: 5px;
@@ -49,7 +51,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 
 .investment {
 }
