@@ -85,8 +85,8 @@ class Stock extends Component {
                     </div>
                 </div>
                 <div className="return line-items">
-                    <p className={changeInPriceClassNames}>
-                        {(stock.currentPrice - stock.price).toFixed(2)}
+                    <p className={profitChangeClassNames}>
+                        {profitPercent}%
                     </p>
                     <p className="current-value">
                         {Utils.currency(value)}

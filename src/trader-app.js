@@ -39,9 +39,10 @@ class TraderApp extends Component {
             this.setState({
                 stocks: stocks,
                 txn: {}
+            }, () => {
+                this.syncToStorage(this.state);
+                this.fetchMarketData();
             });
-            this.syncToStorage(this.state);
-            this.fetchMarketData();
         }
     }
 
