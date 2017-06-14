@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 
 import "./trader-app.css";
 
@@ -132,12 +132,16 @@ class TraderApp extends Component {
         return (
             <Router>
                 <div className="app">
-                    <h1 className="app-title">Trader</h1>
-                    <ul className="main-menu">
-                        <li>
-                            <Link to="/stock/add">+</Link>
-                        </li>
-                    </ul>
+                    <header>
+                        <h1 className="app-title">
+                            <Link to="/">Trader</Link>
+                        </h1>
+                        <ul className="main-menu">
+                            <li>
+                                <Link to="/stock/add">+</Link>
+                            </li>
+                        </ul>
+                    </header>
                     <Route exact path="/" render={() => <Portfolio
                         stocks={this.state.stocks}
                         onDeleteStock={this.deleteStock}

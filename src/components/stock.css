@@ -27,7 +27,7 @@
 
 .details .symbol {
     font-size: .8rem;
-    font-weight: bold;
+    color: purple;
 }
 
 .details .market {
@@ -36,8 +36,9 @@
 
 .market-price {
     font-size: 1.4rem;
-    font-weight: 300;
+    font-weight: bold;
     margin-top: 10px;
+    color: purple;
 }
 
 .price-change {
@@ -57,6 +58,7 @@
 
 .investment .cost {
     font-size: 1.5rem;
+    color: #7f8c8d;
 }
 
 .bought-price,
@@ -70,6 +72,7 @@
 
 .return .current-value {
     font-size: 1.5rem;
+    color: #2c3e50;
 }
 
 .line-items p {
