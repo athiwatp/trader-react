@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 
 import "./trader-app.css";
 
-import TransactionForm from "./components/transaction-form";
+import StockForm from "./components/stock-form";
 import Portfolio from "./components/portfolio";
 
 const STORAGE_KEY = 'traderState';
@@ -20,10 +20,14 @@ class TraderApp extends Component {
         this.fetchMarketData = this.fetchMarketData.bind(this);
         this.updatePortfolio = this.updatePortfolio.bind(this);
         this.deleteStock = this.deleteStock.bind(this);
+        this.showStockForm = this.showStockForm.bind(this);
+        this.toggleStockForm = this.toggleStockForm.bind(this);
+        this.closeStockForm = this.closeStockForm.bind(this);
 
         this.state = (this.syncFromStorage()) || {
                 stocks: [],
-                txn: {}
+                txn: {},
+                showForm: true
             };
     }
 
@@ -44,6 +48,26 @@ class TraderApp extends Component {
                 this.fetchMarketData();
             });
         }
+    }
+
+    toggleStockForm(e) {
+        e.preventDefault();
+        this.setState({
+            showForm: !this.state.showForm
+        });
+    }
+
+    showStockForm(e) {
+        e.preventDefault();
+        this.setState({
+            showForm: true
+        });
+    }
+
+    closeStockForm() {
+        this.setState({
+            showForm: false
+        });
     }
 
     deleteStock(id) {
@@ -138,17 +162,21 @@ class TraderApp extends Component {
                         </h1>
                         <ul className="main-menu">
                             <li>
-                                <Link to="/stock/add">+</Link>
+                                <a href="#" onClick={this.toggleStockForm}>+</a>
                             </li>
                         </ul>
                     </header>
                     <Route exact path="/" render={() => <Portfolio
                         stocks={this.state.stocks}
+                        onAddStock={this.showStockForm}
                         onDeleteStock={this.deleteStock}
                     />}/>
-                    <Route path="/stock/add"
-                           render={() => <TransactionForm txn={this.state.txn} onSave={this.saveTransaction}/> }/>
 
+                    {this.state.showForm ? <StockForm
+                        txn={this.state.txn}
+                        onSave={this.saveTransaction}
+                        onClose={this.closeStockForm}
+                    /> : null}
                 </div>
             </Router>
         )

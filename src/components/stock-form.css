@@ -1,0 +1,84 @@
+.animated {
+    animation-duration: .5s;
+    animation-fill-mode: both;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.zoomIn {
+    animation-name: zoomIn;
+}
+
+@keyframes zoomOut {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.zoomOut {
+    animation-name: zoomOut;
+}
+
+.stock-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+}
+
+.stock-form form {
+    position: relative;
+    width: 100%;
+}
+
+.stock-form .close-form {
+    position: absolute;
+    top:10px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.stock-form form {
+    background-color: #ffffff;
+    margin: 40px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #333;
+}
+
+
+.fields .field {
+    margin-top: 10px;
+}
+
+.field label {
+    font-size: 1rem;
+    display: block;
+}
+
+.field input[type='text'] {
+    border:1px solid #999999;
+}
+

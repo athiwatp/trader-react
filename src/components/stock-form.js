@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import "./transaction-form.css";
+import classnames from 'classnames';
+import "./stock-form.css";
 
 class TransactionForm extends Component {
 
@@ -7,6 +8,11 @@ class TransactionForm extends Component {
         super(props);
         this.save = this.save.bind(this);
         this.clear = this.clear.bind(this);
+        this.closeForm = this.closeForm.bind(this);
+
+        this.state = {
+            closing: false
+        };
     }
 
     save(e) {
@@ -28,57 +34,93 @@ class TransactionForm extends Component {
         this.dateElm.value = '';
     }
 
+    closeForm(e) {
+        e.preventDefault();
+        this.setState({
+            closing: true
+        }, () => {
+            setTimeout(() => {
+                this.props.onClose();
+            }, 300)
+        });
+    }
+
     render() {
         let txn = this.props.txn || {};
+
+        let formClassNames = classnames({
+            animated: true,
+            zoomIn: !this.state.closing,
+            zoomOut: this.state.closing
+        });
+
         return (
-            <form className="transaction-form" onSubmit={this.save}>
-                <input
-                    id="symbol"
-                    type="text"
-                    defaultValue={txn.symbol}
-                    placeholder="Symbol"
-                    className="input-field symbol"
-                    ref={(elm) => this.symbolElm = elm}
-                    pattern="[a-zA-Z]+"
-                    required='required'
-                />
-                <input
-                    id="price"
-                    type="tel"
-                    defaultValue={txn.price}
-                    placeholder="Price"
-                    className="input-field price"
-                    ref={(elm) => this.priceELm = elm}
-                    pattern="^\d{0,8}(\.\d{1,4})?$"
-                    required='required'
-                />
-                <input
-                    id="quantity"
-                    type="tel"
-                    defaultValue={txn.qty}
-                    placeholder="Qty"
-                    className="input-field qty"
-                    ref={(elm) => this.qtyElm = elm}
-                    pattern="^\d{0,8}$"
-                    required='required'
-                />
-                <input
-                    id="date"
-                    type="text"
-                    defaultValue={txn.date}
-                    placeholder="DD/MM/YYYY"
-                    className="input-field date"
-                    ref={(elm) => this.dateElm = elm}
-                    pattern="\d{1,2}/\d{1,2}/\d{4}"
-                    required='required'
-                />
-                <input
-                    d="btn-submit"
-                    type="submit"
-                    value={'+'}
-                    className="input-field btn"
-                />
-            </form>
+            <div className="stock-form">
+                <form className={formClassNames} onSubmit={this.save}>
+
+                    <a className="close-form" onClick={this.closeForm}>X</a>
+
+                    <h2>Add Stock</h2>
+
+                    <ul className="fields">
+                        <li className="field">
+                            <label htmlFor="symbol">Stock symbol</label>
+                            <input
+                                id="symbol"
+                                type="text"
+                                defaultValue={txn.symbol}
+                                placeholder="Symbol"
+                                className="input-field symbol"
+                                ref={(elm) => this.symbolElm = elm}
+                                pattern="[a-zA-Z]+"
+                                required='required'
+                            />
+                        </li>
+                        <li className="field">
+                            <label htmlFor="price">Stock Price</label>
+                            <input
+                                id="price"
+                                type="tel"
+                                defaultValue={txn.price}
+                                placeholder="Price"
+                                className="input-field price"
+                                ref={(elm) => this.priceELm = elm}
+                                pattern="^\d{0,8}(\.\d{1,4})?$"
+                                required='required'
+                            />
+                        </li>
+                        <li className="field">
+                            <label htmlFor="quantity">Number of stocks</label>
+                            <input
+                                id="quantity"
+                                type="tel"
+                                defaultValue={txn.qty}
+                                placeholder="Qty"
+                                className="input-field qty"
+                                ref={(elm) => this.qtyElm = elm}
+                                pattern="^\d{0,8}$"
+                                required='required'
+                            />
+                        </li>
+                        <li className="field">
+                            <label htmlFor="date">Transaction Date</label>
+                            <input
+                                id="date"
+                                type="text"
+                                defaultValue={txn.date}
+                                placeholder="DD/MM/YYYY"
+                                className="input-field date"
+                                ref={(elm) => this.dateElm = elm}
+                                pattern="\d{1,2}/\d{1,2}/\d{4}"
+                                required='required'
+                            />
+                        </li>
+                    </ul>
+                    <div className="cta-buttons">
+                        <button>Add</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }
