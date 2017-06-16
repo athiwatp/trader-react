@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import classnames from "classnames";
 import "./stock-form.css";
 
 class Form extends Component {
@@ -8,11 +7,7 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.save}>
-
-                <a className="close-form" onClick={this.closeForm}>X</a>
-
                 <h2 className="title">Add Stock</h2>
-
                 <ul className="fields">
                     <li className="field">
                         <label htmlFor="symbol">Stock symbol</label>

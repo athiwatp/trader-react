@@ -1,0 +1,36 @@
+.overlay {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    transition: background-color .2s;
+}
+
+.overlay .wrapper {
+    display: none;
+}
+
+.overlay .contents {
+    position: relative;
+}
+
+.overlay.open {
+    height: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.overlay.open .contents {
+    flex: 1;
+    align-self: flex-end;
+}
+
+.overlay.open .wrapper {
+    display: block;
+}
+
+.overlay .toggle {
+    float: right;
+    margin-top: -75px;
+    margin-right: 75px;
+}

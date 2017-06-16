@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import "./trader-app.css";
 
 import AppBar from "./components/app-bar";
+import Overlay from "./components/overlay";
 import StockForm from "./components/stock-form";
 import Portfolio from "./components/portfolio";
 
@@ -168,12 +169,14 @@ class TraderApp extends Component {
                         />}/>
                     </div>
 
-                    <StockForm
-                        open={this.state.showForm}
-                        txn={this.state.txn}
-                        onSave={this.saveTransaction}
-                        onClose={this.closeStockForm}
-                    />
+                    <Overlay>
+                        <StockForm
+                            open={this.state.showForm}
+                            txn={this.state.txn}
+                            onSave={this.saveTransaction}
+                            onClose={this.closeStockForm}
+                        />
+                    </Overlay>
                 </div>
             </Router>
         )
