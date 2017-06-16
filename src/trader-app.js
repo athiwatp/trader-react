@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 import "./trader-app.css";
 
+import AppBar from "./components/app-bar";
 import StockForm from "./components/stock-form";
 import Portfolio from "./components/portfolio";
 
@@ -156,27 +157,23 @@ class TraderApp extends Component {
         return (
             <Router>
                 <div className="app">
-                    <header>
-                        <h1 className="app-title">
-                            <Link to="/">Trader</Link>
-                        </h1>
-                        <ul className="main-menu">
-                            <li>
-                                <a href="#" onClick={this.toggleStockForm}>+</a>
-                            </li>
-                        </ul>
-                    </header>
-                    <Route exact path="/" render={() => <Portfolio
-                        stocks={this.state.stocks}
-                        onAddStock={this.showStockForm}
-                        onDeleteStock={this.deleteStock}
-                    />}/>
 
-                    {this.state.showForm ? <StockForm
+                    <AppBar/>
+
+                    <div className="content">
+                        <Route exact path="/" render={() => <Portfolio
+                            stocks={this.state.stocks}
+                            onAddStock={this.showStockForm}
+                            onDeleteStock={this.deleteStock}
+                        />}/>
+                    </div>
+
+                    <StockForm
+                        open={this.state.showForm}
                         txn={this.state.txn}
                         onSave={this.saveTransaction}
                         onClose={this.closeStockForm}
-                    /> : null}
+                    />
                 </div>
             </Router>
         )
