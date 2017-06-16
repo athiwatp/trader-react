@@ -6,18 +6,12 @@ class Form extends Component {
     render() {
         let txn = this.props.txn || {};
 
-        let formClassNames = classnames({
-            animated: true,
-            zoomIn: !this.state.closing,
-            zoomOut: this.state.closing
-        });
-
         return (
-            <form className={formClassNames} onSubmit={this.save}>
+            <form onSubmit={this.save}>
 
                 <a className="close-form" onClick={this.closeForm}>X</a>
 
-                <h2>Add Stock</h2>
+                <h2 className="title">Add Stock</h2>
 
                 <ul className="fields">
                     <li className="field">
@@ -129,7 +123,7 @@ class StockForm extends Component {
 
         return (
             <div className="stock-form">
-                <button className="toggle">+</button>
+                <Form {...this.props} />
             </div>
         )
     }
