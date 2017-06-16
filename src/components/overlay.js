@@ -52,7 +52,8 @@ class Overlay extends Component {
                     <button
                         className="toggle"
                         onClick={this.toggle}
-                    >+
+                    >
+                        {this.state.open ? '-' : '+'}
                     </button>
                     <div className="wrapper">
                         {this.props.children}
