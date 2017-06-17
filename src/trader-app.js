@@ -29,8 +29,8 @@ class TraderApp extends Component {
         this.state = (this.syncFromStorage()) || {
                 stocks: [],
                 txn: {},
-                showForm: true
             };
+        this.state.showForm = false;
     }
 
     componentWillMount() {
@@ -169,9 +169,15 @@ class TraderApp extends Component {
                         />}/>
                     </div>
 
-                    <Overlay>
+                    <button className="add-stock" onClick={this.showStockForm}>
+                        {this.state.showForm ? '-' : '+'}
+                    </button>
+
+                    <Overlay
+                        open={this.state.showForm}
+                        onClose={this.closeStockForm}
+                    >
                         <StockForm
-                            open={this.state.showForm}
                             txn={this.state.txn}
                             onSave={this.saveTransaction}
                             onClose={this.closeStockForm}

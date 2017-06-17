@@ -11,7 +11,7 @@
 }
 
 .overlay .contents {
-    position: relative;
+    background-color: #ffffff;
 }
 
 .overlay.open {
@@ -26,11 +26,16 @@
 }
 
 .overlay.open .wrapper {
+    position: relative;
     display: block;
 }
 
-.overlay .toggle {
-    float: right;
-    margin-top: -20px;
-    margin-right: 75px;
+.overlay .close-overlay {
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    border: 0;
+    z-index: 10;
 }
