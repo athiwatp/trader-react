@@ -37,7 +37,7 @@ class Form extends Component {
                             id="quantity"
                             type="tel"
                             defaultValue={txn.qty}
-                            placeholder="Qty"
+                            placeholder="Quantity"
                             className="qty"
                             ref={(elm) => this.qtyElm = elm}
                             pattern="^\d{0,8}$"
@@ -58,7 +58,8 @@ class Form extends Component {
                     </li>
                 </ul>
                 <div className="cta-buttons">
-                    <button>Add</button>
+                    <button className="secondary">Cancel</button>
+                    <button className="primary">Add</button>
                 </div>
             </form>
         );
