@@ -1,34 +1,30 @@
 .stock-form {
     position: relative;
-    padding: 10px;
+    padding: 20px;
 }
 
-.stock-form .close-form {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.stock-form .title {
-    font-size: 1.3rem;
+.stock-form form {
+    width: 100%;
 }
 
 .stock-form .fields {
     margin-top: 10px;
 }
 
-.fields .field {
-    margin-top: 10px;
-}
-
-.field label {
-    display: block;
-}
-
-.field input {
-    margin-top: 5px;
-}
-
 .stock-form .cta-buttons {
     text-align: right;
+}
+
+.fields.inline {
+    display: flex;
+}
+
+.fields.inline .field {
+    display: block;
+    flex: 1;
+}
+
+.fields.inline .field input {
+    width: 100%;
+    border: none;
 }

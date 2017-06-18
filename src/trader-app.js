@@ -30,7 +30,7 @@ class TraderApp extends Component {
                 stocks: [],
                 txn: {},
             };
-        this.state.showForm = false;
+        this.state.showForm = true;
     }
 
     componentWillMount() {
@@ -174,6 +174,7 @@ class TraderApp extends Component {
                     </button>
 
                     <Overlay
+                        title="Add Stock"
                         open={this.state.showForm}
                         onClose={this.closeStockForm}
                     >

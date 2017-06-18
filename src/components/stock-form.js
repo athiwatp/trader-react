@@ -7,55 +7,50 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.save}>
-                <h2 className="title">Add Stock</h2>
-                <ul className="fields">
+                <ul className="fields inline">
                     <li className="field">
-                        <label htmlFor="symbol">Stock symbol</label>
                         <input
                             id="symbol"
                             type="text"
                             defaultValue={txn.symbol}
                             placeholder="Symbol"
-                            className="input-field symbol"
+                            className="symbol"
                             ref={(elm) => this.symbolElm = elm}
                             pattern="[a-zA-Z]+"
                             required='required'
                         />
                     </li>
                     <li className="field">
-                        <label htmlFor="price">Stock Price</label>
                         <input
                             id="price"
                             type="tel"
                             defaultValue={txn.price}
                             placeholder="Price"
-                            className="input-field price"
+                            className="price"
                             ref={(elm) => this.priceELm = elm}
                             pattern="^\d{0,8}(\.\d{1,4})?$"
                             required='required'
                         />
                     </li>
                     <li className="field">
-                        <label htmlFor="quantity">Number of stocks</label>
                         <input
                             id="quantity"
                             type="tel"
                             defaultValue={txn.qty}
                             placeholder="Qty"
-                            className="input-field qty"
+                            className="qty"
                             ref={(elm) => this.qtyElm = elm}
                             pattern="^\d{0,8}$"
                             required='required'
                         />
                     </li>
                     <li className="field">
-                        <label htmlFor="date">Transaction Date</label>
                         <input
                             id="date"
                             type="text"
                             defaultValue={txn.date}
                             placeholder="DD/MM/YYYY"
-                            className="input-field date"
+                            className="date"
                             ref={(elm) => this.dateElm = elm}
                             pattern="\d{1,2}/\d{1,2}/\d{4}"
                             required='required'

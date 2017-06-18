@@ -96,7 +96,7 @@ class Stock extends Component {
                     </p>
                 </div>
                 <ul className="actions">
-                    <li onClick={this.deleteStock}>X</li>
+                    <li onClick={this.deleteStock}>✕</li>
                 </ul>
             </div>
         )

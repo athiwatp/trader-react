@@ -43,7 +43,10 @@ class Overlay extends Component {
             <div className={overlayClasses}>
                 <div className={contentsClass}>
                     <div className="wrapper">
-                        <button className="close-overlay" onClick={this.close}>X</button>
+                        <header>
+                            <h2 className="title">{this.props.title}</h2>
+                            <button className="close-overlay" onClick={this.close}>✕</button>
+                        </header>
                         {this.props.children}
                     </div>
                 </div>
