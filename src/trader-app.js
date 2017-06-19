@@ -30,7 +30,7 @@ class TraderApp extends Component {
                 stocks: [],
                 txn: {},
             };
-        this.state.showForm = true;
+        this.state.showForm = false;
     }
 
     componentWillMount() {
@@ -40,6 +40,7 @@ class TraderApp extends Component {
     saveTransaction(txn) {
         let stocks = this.state.stocks;
         if (this.isValidTransaction(txn)) {
+            this.closeStockForm();
             txn.id = txn.id || this.guid();
             stocks.push(txn);
             this.setState({

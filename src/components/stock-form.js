@@ -2,11 +2,36 @@ import React, {Component} from "react";
 import "./stock-form.css";
 
 class Form extends Component {
+
+    saveForm = (e) => {
+        e.preventDefault();
+        let txn = {
+            symbol: this.symbolElm.value || '',
+            price: this.priceELm.value || '',
+            qty: this.qtyElm.value || '',
+            date: this.dateElm.value || ''
+        };
+        this.clearForm();
+        this.props.onSave(txn);
+    }
+
+    cancelForm = () => {
+        this.clearForm();
+        this.props.onCancel();
+    }
+
+    clearForm = () => {
+        this.symbolElm.value = '';
+        this.priceELm.value = '';
+        this.qtyElm.value = '';
+        this.dateElm.value = '';
+    }
+
     render() {
         let txn = this.props.txn || {};
 
         return (
-            <form onSubmit={this.save}>
+            <form onSubmit={this.saveForm}>
                 <ul className="fields inline">
                     <li className="field">
                         <input
@@ -58,48 +83,40 @@ class Form extends Component {
                     </li>
                 </ul>
                 <div className="cta-buttons">
-                    <button className="secondary">Cancel</button>
-                    <button className="primary">Add</button>
+                    <button className="secondary" onClick={this.cancelForm}>Cancel</button>
+                    <button className="primary" type="submit">Add</button>
                 </div>
             </form>
         );
     }
 }
 
+Form.defaultProps = {
+    txn: {
+        id: '',
+        symbol: '',
+        price: '',
+        qty: '',
+        date: ''
+    }
+};
+
+
 class StockForm extends Component {
 
     constructor(props) {
         super(props);
-        this.save = this.save.bind(this);
-        this.clear = this.clear.bind(this);
-        this.closeForm = this.closeForm.bind(this);
 
         this.state = {
             closing: false
         };
     }
 
-    save(e) {
-        e.preventDefault();
-        let txn = {
-            symbol: this.symbolElm.value || '',
-            price: this.priceELm.value || '',
-            qty: this.qtyElm.value || '',
-            date: this.dateElm.value || ''
-        };
+    save = (txn) => {
         this.props.onSave(txn);
-        this.clear();
     }
 
-    clear() {
-        this.symbolElm.value = '';
-        this.priceELm.value = '';
-        this.qtyElm.value = '';
-        this.dateElm.value = '';
-    }
-
-    closeForm(e) {
-        e.preventDefault();
+    close = () => {
         this.setState({
             closing: true
         }, () => {
@@ -114,20 +131,15 @@ class StockForm extends Component {
 
         return (
             <div className="stock-form">
-                <Form {...this.props} />
+                <Form
+                    {...this.props}
+                    onSave={this.save}
+                    onCancel={this.close}
+                />
             </div>
         )
     }
 }
 
-StockForm.defaultProps = {
-    txn: {
-        id: '',
-        symbol: '',
-        price: '',
-        qty: '',
-        date: ''
-    }
-};
 
 export default StockForm;
