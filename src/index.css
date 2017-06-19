@@ -72,6 +72,10 @@ body {
     animation-fill-mode: both;
 }
 
+.animated.slow {
+    animation-duration: .5s;
+}
+
 @keyframes slideInUp {
     from {
         transform: translate3d(0, 100%, 0);
@@ -102,3 +106,21 @@ body {
     animation-name: slideOutDown;
 }
 
+@keyframes zoomOut {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.zoomOut {
+    animation-name: zoomOut;
+}

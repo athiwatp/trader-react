@@ -10,8 +10,9 @@ class Stock extends Component {
     constructor(props) {
         super(props);
 
-        this.deleteStock = this.deleteStock.bind(this);
-
+        this.state = {
+            deleted: false
+        };
     }
 
     daysOld(date) {
@@ -22,8 +23,14 @@ class Stock extends Component {
         return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
     }
 
-    deleteStock() {
-        this.props.onDeleteStock(this.props.stock.id);
+    deleteStock = () => {
+        this.setState({
+            deleted: true
+        }, () => {
+            setTimeout(() => {
+                this.props.onDeleteStock(this.props.stock.id);
+            }, 600);
+        });
     }
 
     render() {
@@ -34,7 +41,6 @@ class Stock extends Component {
         let profit = value - cost;
         let daysOld = this.daysOld(stock.date);
         let profitPercent = Math.ceil((100 * profit) / cost);
-        let changeInPrice = stock.currentPrice - stock.price;
 
         let priceChangeClassNames = classnames({
             'volatile-value': true,
@@ -43,12 +49,6 @@ class Stock extends Component {
             up: stock.changePercent >= 0
         });
 
-        let changeInPriceClassNames = classnames({
-            'volatile-value': true,
-            'change-in-price': true,
-            down: changeInPrice < 0,
-            up: changeInPrice > 0
-        });
 
         let profitChangeClassNames = classnames({
             'volatile-value': true,
@@ -57,8 +57,14 @@ class Stock extends Component {
             up: profit > 0
         });
 
+        let stockClassNames = classnames({
+            stock: true,
+            animated: true,
+            zoomOut: this.state.deleted
+        });
+
         return (
-            <div className="stock">
+            <div className={stockClassNames}>
                 <div className="investment line-items">
                     <p className="bought-price">
                         {Utils.currency(stock.price)}
