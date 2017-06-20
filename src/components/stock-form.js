@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./stock-form.css";
+import InlineSelect from "./inline-select";
 
 class Form extends Component {
 
@@ -27,11 +28,31 @@ class Form extends Component {
         this.dateElm.value = '';
     }
 
+    handleActionSelect = (selected) => {
+        console.log('Selected ', selected);
+    }
+
     render() {
         let txn = this.props.txn || {};
 
         return (
             <form onSubmit={this.saveForm}>
+                <ul className="fields inline">
+                    <li>
+                        <InlineSelect
+                            label="Action"
+                            options={[{
+                                text: 'Bought',
+                                value: 'bought'
+                            }, {
+                                text: 'Sold',
+                                value: 'sold'
+                            }]}
+                            selected={'bought'}
+                            onSelect={this.handleActionSelect}
+                        />
+                    </li>
+                </ul>
                 <ul className="fields inline">
                     <li className="field">
                         <input

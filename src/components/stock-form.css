@@ -24,12 +24,18 @@
     margin-right: 10px;
 }
 
-.fields.inline .field input {
-    width: 100%;
+.field input {
+    width: 99%;
     border: none;
     border-bottom: 1px solid #7f8c8d;
     font-size: .9rem;
     font-family: 'Roboto Condensed', sans-serif;
+    padding: 2px;
+}
+
+.fields.inline .field input:focus {
+    outline: none;
+    border-bottom: 1px solid #3779f2;
 }
 
 .cta-buttons {

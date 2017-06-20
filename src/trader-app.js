@@ -30,7 +30,7 @@ class TraderApp extends Component {
                 stocks: [],
                 txn: {},
             };
-        this.state.showForm = false;
+        this.state.showForm = true;
     }
 
     componentWillMount() {
