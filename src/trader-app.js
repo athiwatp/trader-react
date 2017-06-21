@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import request from 'request';
 
 import "./trader-app.css";
 
@@ -30,7 +31,7 @@ class TraderApp extends Component {
                 stocks: [],
                 txn: {},
             };
-        this.state.showForm = true;
+        this.state.showForm = false;
     }
 
     componentWillMount() {
@@ -108,18 +109,18 @@ class TraderApp extends Component {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
-            let options = this.isLocalhost() ? {} : {
-                mode: 'no-cors'
-            };
-            fetch(quoteURL, options).then(r => r.text()).then((text) => {
-                if (text) {
-                    text = text.substr(text.indexOf(JUNK_PREFIX) + JUNK_PREFIX.length);
-                    text = text.trim();
-                    this.updatePortfolio(JSON.parse(text));
+            request(quoteURL, (error, response, body) => {
+                if(error) {
+                    console.error('Unable to fetch market data');
+                    return;
                 }
-            }).catch((error) => {
-                console.error('Unable to fetch market data', error);
+                if (body) {
+                    body = body.substr(body.indexOf(JUNK_PREFIX) + JUNK_PREFIX.length);
+                    body = body.trim();
+                    this.updatePortfolio(JSON.parse(body));
+                }
             });
+
         }
     }
 
