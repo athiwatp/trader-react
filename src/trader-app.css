@@ -1,3 +1,15 @@
+.app-root,
+.app {
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.app {
+    color: #333333;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 .volatile-value.up {
     color: #27ae60;
 }
@@ -34,7 +46,7 @@
 }
 
 .add-stock {
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 50px;
     color: #ffffff;

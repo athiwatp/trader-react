@@ -162,7 +162,6 @@ class TraderApp extends Component {
                 <div className="app">
 
                     <AppBar/>
-
                     <div className="content">
                         <Route exact path="/" render={() => <Portfolio
                             stocks={this.state.stocks}
