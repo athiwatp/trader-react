@@ -6,12 +6,11 @@ class InlineSelect extends Component {
     render() {
 
         return (
-            <div>
-                <p>{this.props.label}</p>
-                <ul className="inline-select">
+            <div className="inline-select">
+                <label>{this.props.label}</label>
+                <ul>
                     {
                         this.props.options.map((o, idx) => {
-                            console.log(o.value);
                             let optionClassNames = classnames({
                                 option: true,
                                 selected: o.value === this.props.selected
@@ -19,7 +18,7 @@ class InlineSelect extends Component {
                             return (
                                 <li
                                     className={optionClassNames} key={o.value || idx}
-                                    onClick={this.props.onSelect.bind(o.value)}
+                                    onClick={this.props.onSelect.bind(this, o.value)}
                                 >
                                     {o.text}
                                 </li>

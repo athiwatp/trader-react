@@ -38,6 +38,11 @@
     border-bottom: 1px solid #3779f2;
 }
 
+.fields.options .field {
+    display: inline-block;
+    margin-right: 40px;
+}
+
 .cta-buttons {
     padding: 20px;
 }

@@ -4,6 +4,11 @@ import InlineSelect from "./inline-select";
 
 class Form extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
     saveForm = (e) => {
         e.preventDefault();
         let txn = {
@@ -29,7 +34,15 @@ class Form extends Component {
     }
 
     handleActionSelect = (selected) => {
-        console.log('Selected ', selected);
+        this.setState({
+            action: selected
+        })
+    }
+
+    handleExchangeSelect = (selected) => {
+        this.setState({
+            exchange: selected
+        })
     }
 
     render() {
@@ -37,8 +50,8 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.saveForm}>
-                <ul className="fields inline">
-                    <li>
+                <ul className="fields options">
+                    <li className="field">
                         <InlineSelect
                             label="Action"
                             options={[{
@@ -48,8 +61,25 @@ class Form extends Component {
                                 text: 'Sold',
                                 value: 'sold'
                             }]}
-                            selected={'bought'}
+                            selected={this.state.action}
                             onSelect={this.handleActionSelect}
+                        />
+                    </li>
+                    <li className="field">
+                        <InlineSelect
+                            label="Exchange"
+                            options={[{
+                                text: 'NSE',
+                                value: 'NSE'
+                            }, {
+                                text: 'BSE',
+                                value: 'BSE'
+                            }, {
+                                text: 'NASDAQ',
+                                value: 'NASDAQ'
+                            }]}
+                            selected={this.state.exchange}
+                            onSelect={this.handleExchangeSelect}
                         />
                     </li>
                 </ul>
