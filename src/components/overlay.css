@@ -3,7 +3,10 @@
     width: 100%;
     bottom: 0;
     z-index: 1000;
-    transition: background-color .2s;
+}
+
+.overlay.open {
+    transition: background-color .5s;
 }
 
 .overlay .wrapper {
@@ -18,6 +21,11 @@
     height: 100%;
     display: flex;
     background-color: rgba(0, 0, 0, .5);
+    transition: background-color .5s;
+}
+
+.overlay.closing {
+    background-color: rgba(0,0,0,0);
 }
 
 .overlay.open .contents {

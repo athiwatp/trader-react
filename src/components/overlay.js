@@ -29,7 +29,8 @@ class Overlay extends Component {
         let isOpen = this.props.open;
         let overlayClasses = classnames({
             overlay: true,
-            open: isOpen
+            open: isOpen,
+            closing: this.state.closing
         });
 
         let contentsClass = classnames({
