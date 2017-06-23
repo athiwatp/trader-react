@@ -59,6 +59,10 @@ body {
     min-height: 100%;
 }
 
+input:focus {
+    outline: none;
+}
+
 .animated {
     animation-duration: .2s;
     animation-fill-mode: both;
