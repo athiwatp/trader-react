@@ -48,26 +48,15 @@ table {
     border-spacing: 0;
 }
 
+html {
+    height: 100%;
+    width: 100%;
+}
+
 body {
-    width: 100vw;
-    height: 100vh;
-}
-
-input:focus {
-    outline: none;
-}
-
-.app-root {
-    width: 100vw;
-    height: 100vh;
-}
-
-.app {
-    position: relative;
-    color: #333333;
-    font-family: 'Roboto Condensed', sans-serif;
-    width: 100vw;
-    height: 100vh;
+    background-color: #DAE6F5;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .animated {
