@@ -20,8 +20,8 @@
 }
 
 .inline-select .option.selected {
-    background-color: #89b0f6;
-    color: #ffffff;
+    background-color: #0000ff;
+    color: #eaeaea;
 }
 
 .inline-select label {

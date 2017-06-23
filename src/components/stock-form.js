@@ -50,7 +50,7 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.saveForm}>
-                <ul className="fields options">
+                <ul className="fields">
                     <li className="field">
                         <InlineSelect
                             label="Action"
@@ -82,55 +82,61 @@ class Form extends Component {
                             onSelect={this.handleExchangeSelect}
                         />
                     </li>
-                </ul>
-                <ul className="fields inline">
                     <li className="field">
-                        <input
-                            id="symbol"
-                            type="text"
-                            defaultValue={txn.symbol}
-                            placeholder="Symbol"
-                            className="symbol"
-                            ref={(elm) => this.symbolElm = elm}
-                            pattern="[a-zA-Z]+"
-                            required='required'
-                        />
+                        <div className="input-field">
+                            <input
+                                id="symbol"
+                                type="text"
+                                defaultValue={txn.symbol}
+                                placeholder="Symbol"
+                                className="symbol"
+                                ref={(elm) => this.symbolElm = elm}
+                                pattern="[a-zA-Z]+"
+                                required='required'
+                            />
+                        </div>
                     </li>
                     <li className="field">
-                        <input
-                            id="price"
-                            type="tel"
-                            defaultValue={txn.price}
-                            placeholder="Price"
-                            className="price"
-                            ref={(elm) => this.priceELm = elm}
-                            pattern="^\d{0,8}(\.\d{1,4})?$"
-                            required='required'
-                        />
+                        <div className="input-field">
+                            <input
+                                id="price"
+                                type="tel"
+                                defaultValue={txn.price}
+                                placeholder="Price"
+                                className="price"
+                                ref={(elm) => this.priceELm = elm}
+                                pattern="^\d{0,8}(\.\d{1,4})?$"
+                                required='required'
+                            />
+                        </div>
                     </li>
                     <li className="field">
-                        <input
-                            id="quantity"
-                            type="tel"
-                            defaultValue={txn.qty}
-                            placeholder="Quantity"
-                            className="qty"
-                            ref={(elm) => this.qtyElm = elm}
-                            pattern="^\d{0,8}$"
-                            required='required'
-                        />
+                        <div className="input-field">
+                            <input
+                                id="quantity"
+                                type="tel"
+                                defaultValue={txn.qty}
+                                placeholder="Quantity"
+                                className="qty"
+                                ref={(elm) => this.qtyElm = elm}
+                                pattern="^\d{0,8}$"
+                                required='required'
+                            />
+                        </div>
                     </li>
                     <li className="field">
-                        <input
-                            id="date"
-                            type="text"
-                            defaultValue={txn.date}
-                            placeholder="DD/MM/YYYY"
-                            className="date"
-                            ref={(elm) => this.dateElm = elm}
-                            pattern="\d{1,2}/\d{1,2}/\d{4}"
-                            required='required'
-                        />
+                        <div className="input-field">
+                            <input
+                                id="date"
+                                type="text"
+                                defaultValue={txn.date}
+                                placeholder="DD/MM/YYYY"
+                                className="date"
+                                ref={(elm) => this.dateElm = elm}
+                                pattern="\d{1,2}/\d{1,2}/\d{4}"
+                                required='required'
+                            />
+                        </div>
                     </li>
                 </ul>
                 <div className="cta-buttons">

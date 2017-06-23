@@ -49,9 +49,12 @@ table {
 }
 
 body {
-    background-color: #DAE6F5;
     width: 100vw;
     height: 100vh;
+}
+
+input:focus {
+    outline: none;
 }
 
 .app-root {
