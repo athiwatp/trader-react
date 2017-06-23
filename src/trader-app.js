@@ -31,7 +31,7 @@ class TraderApp extends Component {
                 stocks: [],
                 txn: {},
             };
-        this.state.showForm = false;
+        this.state.showForm = true;
     }
 
     componentWillMount() {
@@ -109,7 +109,13 @@ class TraderApp extends Component {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
-            request(quoteURL, (error, response, body) => {
+            let options = {
+                url: quoteURL,
+                headers: {
+                    'Origin': 'https://finance.google.com'
+                }
+            };
+            request(options, (error, response, body) => {
                 if(error) {
                     console.error('Unable to fetch market data');
                     return;
