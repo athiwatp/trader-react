@@ -2,21 +2,36 @@ import React, {Component} from "react";
 import "./stock-form.css";
 import InlineSelect from "./inline-select";
 
+
+let EMPTY_STOCK = {
+    symbol: 'VEERA',
+    price: '99',
+    quantity: '999',
+    date: '10/20/2020',
+    action: '',
+    exchange: ''
+};
+
 class Form extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            stock: EMPTY_STOCK
+        };
+    }
+
+    componentWillMount() {
+        this.setState({
+            stock: this.props.stock || EMPTY_STOCK
+        });
     }
 
     saveForm = (e) => {
         e.preventDefault();
-        let txn = {
-            symbol: this.symbolElm.value || '',
-            price: this.priceELm.value || '',
-            qty: this.qtyElm.value || '',
-            date: this.dateElm.value || ''
-        };
+        console.log(this.state);
+        return;
+        let txn = Object.assign({}, this.state);
         this.clearForm();
         this.props.onSave(txn);
     }
@@ -27,10 +42,13 @@ class Form extends Component {
     }
 
     clearForm = () => {
-        this.symbolElm.value = '';
-        this.priceELm.value = '';
-        this.qtyElm.value = '';
-        this.dateElm.value = '';
+        this.setState({
+            stock: EMPTY_STOCK
+        })
+    }
+
+    handleInputChange = (e) => {
+        console.log('about to change', e.target.id);
     }
 
     handleActionSelect = (selected) => {
@@ -46,7 +64,7 @@ class Form extends Component {
     }
 
     render() {
-        let stock = this.props.stock || {};
+        let stock = this.state.stock || {};
         return (
             <form onSubmit={this.saveForm}>
                 <ul className="fields">
@@ -86,10 +104,9 @@ class Form extends Component {
                             <input
                                 id="symbol"
                                 type="text"
-                                defaultValue={stock.symbol}
+                                value={stock.symbol}
                                 placeholder="Symbol"
                                 className="symbol"
-                                ref={(elm) => this.symbolElm = elm}
                                 pattern="[a-zA-Z]+"
                                 required='required'
                             />
@@ -100,10 +117,9 @@ class Form extends Component {
                             <input
                                 id="price"
                                 type="tel"
-                                defaultValue={stock.price}
+                                value={stock.price}
                                 placeholder="Price"
                                 className="price"
-                                ref={(elm) => this.priceELm = elm}
                                 pattern="^\d{0,8}(\.\d{1,4})?$"
                                 required='required'
                             />
@@ -114,10 +130,9 @@ class Form extends Component {
                             <input
                                 id="quantity"
                                 type="tel"
-                                defaultValue={stock.qty}
+                                value={stock.qty}
                                 placeholder="Quantity"
                                 className="qty"
-                                ref={(elm) => this.qtyElm = elm}
                                 pattern="^\d{0,8}$"
                                 required='required'
                             />
@@ -128,10 +143,9 @@ class Form extends Component {
                             <input
                                 id="date"
                                 type="text"
-                                defaultValue={stock.date}
+                                value={stock.date}
                                 placeholder="DD/MM/YYYY"
                                 className="date"
-                                ref={(elm) => this.dateElm = elm}
                                 pattern="\d{1,2}/\d{1,2}/\d{4}"
                                 required='required'
                             />
