@@ -33,6 +33,10 @@ class Stock extends Component {
         });
     }
 
+    editStock = () => {
+        this.props.onEditStock(this.props.stock);
+    }
+
     render() {
         let stock = this.props.stock;
 
@@ -64,7 +68,7 @@ class Stock extends Component {
         });
 
         return (
-            <div className={stockClassNames}>
+            <div className={stockClassNames} onClick={this.editStock}>
                 <div className="investment line-items">
                     <p className="bought-price">
                         {Utils.currency(stock.price)}

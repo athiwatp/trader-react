@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import request from 'request';
+import request from "request";
 
 import "./trader-app.css";
 
@@ -31,7 +31,7 @@ class TraderApp extends Component {
                 stocks: [],
                 txn: {},
             };
-        this.state.showForm = true;
+        this.state.showForm = false;
     }
 
     componentWillMount() {
@@ -66,6 +66,14 @@ class TraderApp extends Component {
         this.setState({
             showForm: true
         });
+    }
+
+    editStockForm = (stock) => {
+        this.setState({
+            showForm: true,
+            formMode: 'edit',
+            stockToEdit: stock
+        })
     }
 
     closeStockForm() {
@@ -116,7 +124,7 @@ class TraderApp extends Component {
                 }
             };
             request(options, (error, response, body) => {
-                if(error) {
+                if (error) {
                     console.error('Unable to fetch market data');
                     return;
                 }
@@ -172,6 +180,7 @@ class TraderApp extends Component {
                         <Route exact path="/" render={() => <Portfolio
                             stocks={this.state.stocks}
                             onAddStock={this.showStockForm}
+                            onEditStock={this.editStockForm}
                             onDeleteStock={this.deleteStock}
                         />}/>
                     </div>
@@ -186,7 +195,8 @@ class TraderApp extends Component {
                         onClose={this.closeStockForm}
                     >
                         <StockForm
-                            txn={this.state.txn}
+                            mode={this.state.formMode}
+                            stock={this.state.stockToEdit || {}}
                             onSave={this.saveTransaction}
                             onClose={this.closeStockForm}
                         />

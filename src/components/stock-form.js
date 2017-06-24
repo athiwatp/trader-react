@@ -46,8 +46,7 @@ class Form extends Component {
     }
 
     render() {
-        let txn = this.props.txn || {};
-
+        let stock = this.props.stock || {};
         return (
             <form onSubmit={this.saveForm}>
                 <ul className="fields">
@@ -87,7 +86,7 @@ class Form extends Component {
                             <input
                                 id="symbol"
                                 type="text"
-                                defaultValue={txn.symbol}
+                                defaultValue={stock.symbol}
                                 placeholder="Symbol"
                                 className="symbol"
                                 ref={(elm) => this.symbolElm = elm}
@@ -101,7 +100,7 @@ class Form extends Component {
                             <input
                                 id="price"
                                 type="tel"
-                                defaultValue={txn.price}
+                                defaultValue={stock.price}
                                 placeholder="Price"
                                 className="price"
                                 ref={(elm) => this.priceELm = elm}
@@ -115,7 +114,7 @@ class Form extends Component {
                             <input
                                 id="quantity"
                                 type="tel"
-                                defaultValue={txn.qty}
+                                defaultValue={stock.qty}
                                 placeholder="Quantity"
                                 className="qty"
                                 ref={(elm) => this.qtyElm = elm}
@@ -129,7 +128,7 @@ class Form extends Component {
                             <input
                                 id="date"
                                 type="text"
-                                defaultValue={txn.date}
+                                defaultValue={stock.date}
                                 placeholder="DD/MM/YYYY"
                                 className="date"
                                 ref={(elm) => this.dateElm = elm}
