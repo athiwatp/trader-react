@@ -9,7 +9,7 @@ class EmptyPortfolio extends Component {
         return (
             <div className="empty-portfolio">
                 Add stocks to your portfolio
-                <a href="#" onClick={this.props.onAddStock}>+</a>
+                <button onClick={this.props.onAddStock}> + </button>
             </div>
         )
     }
@@ -19,8 +19,8 @@ class StockPortfolio extends Component {
 
     render() {
         let wealth = this.props.stocks.reduce((memo, s) => {
-            memo.invested += (s.qty * s.price);
-            memo.current += (s.qty * s.currentPrice);
+            memo.invested += (s.quantity * s.price);
+            memo.current += (s.quantity * s.currentPrice);
             return memo;
         }, {invested: 0, current: 0});
 

@@ -8,6 +8,7 @@ import AppBar from "./components/app-bar";
 import Overlay from "./components/overlay";
 import StockForm from "./components/stock-form";
 import Portfolio from "./components/portfolio";
+import {EMPTY_STOCK} from "./data/constants";
 
 const STORAGE_KEY = 'traderState';
 const GOOGLE_FINANCE = 'https://finance.google.com/finance/info?q=';
@@ -27,11 +28,13 @@ class TraderApp extends Component {
         this.toggleStockForm = this.toggleStockForm.bind(this);
         this.closeStockForm = this.closeStockForm.bind(this);
 
-        this.state = (this.syncFromStorage()) || {
-                stocks: [],
-                txn: {},
-            };
-        this.state.showForm = false;
+        this.state = Object.assign({
+            stocks: [],
+            stockToEdit: EMPTY_STOCK
+        }, this.syncFromStorage(), {
+            showForm: false
+        });
+
     }
 
     componentWillMount() {
@@ -46,7 +49,6 @@ class TraderApp extends Component {
             stocks.push(txn);
             this.setState({
                 stocks: stocks,
-                txn: {}
             }, () => {
                 this.syncToStorage(this.state);
                 this.fetchMarketData();
@@ -105,7 +107,7 @@ class TraderApp extends Component {
     isValidTransaction(txn) {
         return txn.symbol.length > 0
             && txn.price > 0
-            && txn.qty > 0
+            && txn.quantity > 0
             && txn.date.length > 0;
     }
 
@@ -190,13 +192,13 @@ class TraderApp extends Component {
                     </button>
 
                     <Overlay
-                        title="Add Stock"
+                        title={this.state.formMode === 'edit' ? 'Edit Stock' : 'Add Stock'}
                         open={this.state.showForm}
                         onClose={this.closeStockForm}
                     >
                         <StockForm
                             mode={this.state.formMode}
-                            stock={this.state.stockToEdit || {}}
+                            stock={this.state.stockToEdit}
                             onSave={this.saveTransaction}
                             onClose={this.closeStockForm}
                         />

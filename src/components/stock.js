@@ -40,8 +40,8 @@ class Stock extends Component {
     render() {
         let stock = this.props.stock;
 
-        let cost = stock.qty * stock.price;
-        let value = stock.qty * stock.currentPrice;
+        let cost = stock.quantity * stock.price;
+        let value = stock.quantity * stock.currentPrice;
         let profit = value - cost;
         let daysOld = this.daysOld(stock.date);
         let profitPercent = Math.ceil((100 * profit) / cost);

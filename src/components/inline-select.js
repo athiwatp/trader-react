@@ -4,7 +4,6 @@ import "./inline-select.css";
 
 class InlineSelect extends Component {
     render() {
-
         return (
             <div className="inline-select">
                 <label>{this.props.label}</label>

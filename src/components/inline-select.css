@@ -9,6 +9,7 @@
     color: #4d4d4d;
     font-weight: 300;
     font-size: .9rem;
+    text-transform: uppercase;
 }
 
 .inline-select .option:first-child {
