@@ -18,16 +18,6 @@ class TraderApp extends Component {
 
     constructor(props) {
         super(props);
-
-        this.saveTransaction = this.saveTransaction.bind(this);
-        this.syncFromStorage = this.syncFromStorage.bind(this);
-        this.fetchMarketData = this.fetchMarketData.bind(this);
-        this.updatePortfolio = this.updatePortfolio.bind(this);
-        this.deleteStock = this.deleteStock.bind(this);
-        this.showStockForm = this.showStockForm.bind(this);
-        this.toggleStockForm = this.toggleStockForm.bind(this);
-        this.closeStockForm = this.closeStockForm.bind(this);
-
         this.state = Object.assign({
             stocks: [],
             stockToEdit: EMPTY_STOCK
@@ -41,12 +31,21 @@ class TraderApp extends Component {
         this.fetchMarketData();
     }
 
-    saveTransaction(txn) {
+    saveTransaction = (txn) => {
         let stocks = this.state.stocks;
         if (this.isValidTransaction(txn)) {
             this.closeStockForm();
-            txn.id = txn.id || this.guid();
-            stocks.push(txn);
+            if (!txn.id) {
+                txn.id = this.guid();
+                stocks.push(txn);
+            } else {
+                stocks = stocks.map((stock) => {
+                    if (stock.id === txn.id) {
+                        return txn;
+                    }
+                    return stock;
+                });
+            }
             this.setState({
                 stocks: stocks,
             }, () => {
@@ -56,15 +55,15 @@ class TraderApp extends Component {
         }
     }
 
-    toggleStockForm(e) {
+    toggleStockForm = (e) => {
         e.preventDefault();
         this.setState({
             showForm: !this.state.showForm
         });
     }
 
-    showStockForm(e) {
-        e.preventDefault();
+
+    addStockForm = () => {
         this.setState({
             showForm: true
         });
@@ -78,13 +77,13 @@ class TraderApp extends Component {
         })
     }
 
-    closeStockForm() {
+    closeStockForm = () => {
         this.setState({
             showForm: false
         });
     }
 
-    deleteStock(id) {
+    deleteStock = (id) => {
         let stocks = this.state.stocks.filter((s) => s.id !== id);
         this.setState({
             stocks: stocks
@@ -94,13 +93,13 @@ class TraderApp extends Component {
 
     }
 
-    syncToStorage(state) {
+    syncToStorage = (state) => {
         if (!!state) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         }
     }
 
-    syncFromStorage() {
+    syncFromStorage = () => {
         return JSON.parse(localStorage.getItem('traderState'));
     }
 
@@ -115,7 +114,7 @@ class TraderApp extends Component {
         return (window.location.hostname === 'localhost');
     }
 
-    fetchMarketData() {
+    fetchMarketData = () => {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
@@ -140,7 +139,7 @@ class TraderApp extends Component {
         }
     }
 
-    updatePortfolio(marketData) {
+    updatePortfolio = (marketData) => {
         if (marketData) {
             let symbols = marketData.reduce((memo, s) => {
                 memo[s.t] = s;
@@ -181,7 +180,7 @@ class TraderApp extends Component {
                     <div className="content">
                         <Route exact path="/" render={() => <Portfolio
                             stocks={this.state.stocks}
-                            onAddStock={this.showStockForm}
+                            onAddStock={this.addStockForm}
                             onEditStock={this.editStockForm}
                             onDeleteStock={this.deleteStock}
                         />}/>
