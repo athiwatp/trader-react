@@ -17,3 +17,8 @@ export const EMPTY_STOCK = {
     action: ACTIONS.BUY,
     exchange: EXCHANGES.NSE
 };
+
+export const STOCK_MODE = {
+    SUMMARY: 'summary',
+    DETAIL: 'detail'
+};

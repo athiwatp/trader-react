@@ -7,7 +7,7 @@ import AppBar from "./components/app-bar";
 import Overlay from "./components/overlay";
 import StockForm from "./components/stock-form";
 import Portfolio from "./components/portfolio";
-import {EMPTY_STOCK} from "./data/constants";
+import {EMPTY_STOCK, STOCK_MODE} from "./data/constants";
 
 const STORAGE_KEY = 'traderState';
 const GOOGLE_FINANCE = 'https://finance.google.com/finance/info?q=';
@@ -20,7 +20,7 @@ class TraderApp extends Component {
         this.state = Object.assign({
             stocks: [],
             stockToEdit: EMPTY_STOCK,
-            portfolioMode: 'summary'
+            stockMode: STOCK_MODE.DETAIL
         }, this.syncFromStorage(), {
             showForm: false
         });
@@ -93,10 +93,23 @@ class TraderApp extends Component {
 
     }
 
-    syncToStorage = (state) => {
-        if (!!state) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    toggleStockMode = () => {
+        let mode = this.state.stockMode;
+        if (mode === STOCK_MODE.SUMMARY) {
+            mode = STOCK_MODE.DETAIL;
+        } else {
+            mode = STOCK_MODE.SUMMARY;
         }
+        this.setState({
+            stockMode: mode
+        }, () => {
+            this.syncToStorage(this.state);
+        });
+    }
+
+    syncToStorage = (state) => {
+        state = state || this.state;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
     syncFromStorage = () => {
@@ -118,12 +131,6 @@ class TraderApp extends Component {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
-            let options = {
-                url: quoteURL,
-                headers: {
-                    'Origin': 'https://finance.google.com'
-                }
-            };
 
             fetch(quoteURL, {
                 mode: this.isLocalhost() ? '' : 'no-cors'
@@ -181,15 +188,15 @@ class TraderApp extends Component {
                     <div className="content">
                         <Route exact path="/" render={() => <Portfolio
                             stocks={this.state.stocks}
+                            stockMode={this.state.stockMode}
                             onAddStock={this.addStockForm}
                             onEditStock={this.editStockForm}
                             onDeleteStock={this.deleteStock}
+                            onToggleStockMode={this.toggleStockMode}
                         />}/>
                     </div>
 
-                    <button className="add-stock" onClick={this.addStockForm}>
-                        +
-                    </button>
+                    <button className="add-stock" onClick={this.addStockForm}>+</button>
 
                     <Overlay
                         title={this.state.formMode === 'edit' ? 'Edit Stock' : 'Add Stock'}

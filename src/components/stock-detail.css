@@ -1,0 +1,16 @@
+.stock-detail {
+    display: flex;
+}
+
+.stock-detail .column {
+    flex: 1;
+    text-align: center;
+}
+
+.stock-detail .column:first-child {
+    padding-left: 20px;
+}
+
+.stock-detail .column:last-child {
+    padding-right: 20px;
+}

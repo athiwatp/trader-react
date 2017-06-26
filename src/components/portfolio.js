@@ -43,7 +43,7 @@ class StockPortfolio extends Component {
                         {wealthChange.toLocaleString()}
                     </p>
                     <ul>
-                        <button onClick={this.togglePortfolioMode}>toggle</button>
+                        <button onClick={this.props.onToggleStockMode}>toggle</button>
                     </ul>
                 </div>
                 {

@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import classnames from "classnames";
 import "./stock.css";
-import './stock-summary.css';
+import "./stock-summary.css";
+import './stock-detail.css';
 import Utils from "../utils";
-
+import {STOCK_MODE} from "../data/constants";
 import RadialProgress from "./radial-progress";
 
 class StockSummary extends Component {
@@ -33,7 +34,7 @@ class StockDetail extends Component {
 
         return (
             <div className="stock-detail">
-                <div className="investment line-items">
+                <div className="investment column">
                     <p className="bought-price">
                         {Utils.currency(stock.price)}
                     </p>
@@ -44,7 +45,7 @@ class StockDetail extends Component {
                         {data.daysOld} days ago
                     </p>
                 </div>
-                <div className="details">
+                <div className="details column">
                     <RadialProgress className="profit-meter" value={data.profitPercent}/>
                     <div className="content">
                         <p className="symbol">
@@ -58,7 +59,7 @@ class StockDetail extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="return line-items">
+                <div className="return column">
                     <p className={data.profitChangeClassNames}>
                         {data.profitPercent}%
                     </p>
@@ -147,9 +148,13 @@ class Stock extends Component {
             zoomOut: this.state.deleted
         });
 
+
         return (
             <div className={stockClassNames} onClick={this.editStock}>
-                <StockSummary data={data}/>
+                {
+                    this.props.stockMode === STOCK_MODE.DETAIL ? <StockDetail data={data}/> :
+                        <StockSummary data={data}/>
+                }
                 <ul className="actions">
                     <li onClick={this.deleteStock}>✕</li>
                 </ul>
