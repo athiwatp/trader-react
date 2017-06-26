@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import request from "request";
 
 import "./trader-app.css";
 
@@ -20,7 +19,8 @@ class TraderApp extends Component {
         super(props);
         this.state = Object.assign({
             stocks: [],
-            stockToEdit: EMPTY_STOCK
+            stockToEdit: EMPTY_STOCK,
+            portfolioMode: 'summary'
         }, this.syncFromStorage(), {
             showForm: false
         });
@@ -124,18 +124,19 @@ class TraderApp extends Component {
                     'Origin': 'https://finance.google.com'
                 }
             };
-            request(options, (error, response, body) => {
-                if (error) {
-                    console.error('Unable to fetch market data');
-                    return;
-                }
+
+            fetch(quoteURL, {
+                mode: this.isLocalhost() ? '' : 'no-cors'
+            }).then((response) => response.text()).then((body) => {
                 if (body) {
                     body = body.substr(body.indexOf(JUNK_PREFIX) + JUNK_PREFIX.length);
                     body = body.trim();
                     this.updatePortfolio(JSON.parse(body));
                 }
+            }).catch((err) => {
+                alert('Unable to get market data! Try again later');
+                console.error(err);
             });
-
         }
     }
 
@@ -186,8 +187,8 @@ class TraderApp extends Component {
                         />}/>
                     </div>
 
-                    <button className="add-stock" onClick={this.showStockForm}>
-                        {this.state.showForm ? '-' : '+'}
+                    <button className="add-stock" onClick={this.addStockForm}>
+                        +
                     </button>
 
                     <Overlay
@@ -199,7 +200,6 @@ class TraderApp extends Component {
                             mode={this.state.formMode}
                             stock={this.state.stockToEdit}
                             onSave={this.saveTransaction}
-                            onClose={this.closeStockForm}
                         />
                     </Overlay>
                 </div>

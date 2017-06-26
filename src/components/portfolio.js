@@ -9,7 +9,7 @@ class EmptyPortfolio extends Component {
         return (
             <div className="empty-portfolio">
                 Add stocks to your portfolio
-                <button onClick={this.props.onAddStock}> + </button>
+                <button onClick={this.props.onAddStock}> Add Stock </button>
             </div>
         )
     }
@@ -42,6 +42,9 @@ class StockPortfolio extends Component {
                     <p className={wealthChangeClassNames}>
                         {wealthChange.toLocaleString()}
                     </p>
+                    <ul>
+                        <button onClick={this.togglePortfolioMode}>toggle</button>
+                    </ul>
                 </div>
                 {
                     this.props.stocks.map((stock) => <Stock key={stock.id} stock={stock} {...this.props} />)

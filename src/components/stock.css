@@ -1,15 +1,9 @@
 .stock {
     position: relative;
-    display: flex;
     background-color: #ffffff;
     border-bottom: 1px solid #eaeaea;
     padding: 20px 0;
     color: #4d4d4d;
-}
-
-.stock > * {
-    flex: 1;
-    text-align: center;
 }
 
 .stock:first-child {
@@ -51,9 +45,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.investment {
 }
 
 .investment .cost {

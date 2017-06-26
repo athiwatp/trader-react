@@ -1,9 +1,78 @@
 import React, {Component} from "react";
 import classnames from "classnames";
 import "./stock.css";
+import './stock-summary.css';
 import Utils from "../utils";
 
-import RadialProgress from './radial-progress';
+import RadialProgress from "./radial-progress";
+
+class StockSummary extends Component {
+    render() {
+        let data = this.props.data;
+        let {stock} = data;
+        return (
+            <div className="stock-summary">
+                <div className="symbol column">{stock.symbol}</div>
+                <div className="price column">
+                    <p className="current">{Utils.currency(stock.currentPrice)}</p>
+                    <em className={data.priceChangeClassNames}>{stock.change}</em>
+                </div>
+                <div className="profit column">
+                    <p className="current">{Utils.currency(data.value)}</p>
+                    <em className={data.profitChangeClassNames}>{Utils.currency(data.profit)}</em>
+                </div>
+            </div>
+        )
+    }
+}
+
+class StockDetail extends Component {
+    render() {
+        let data = this.props.data;
+        let stock = data.stock;
+
+        return (
+            <div className="stock-detail">
+                <div className="investment line-items">
+                    <p className="bought-price">
+                        {Utils.currency(stock.price)}
+                    </p>
+                    <p className="cost">
+                        {Utils.currency(data.cost)}
+                    </p>
+                    <p className="age">
+                        {data.daysOld} days ago
+                    </p>
+                </div>
+                <div className="details">
+                    <RadialProgress className="profit-meter" value={data.profitPercent}/>
+                    <div className="content">
+                        <p className="symbol">
+                            {stock.symbol}
+                        </p>
+                        <p className="market-price">
+                            {Utils.currency(stock.currentPrice)}
+                        </p>
+                        <p className={data.priceChangeClassNames}>
+                            {stock.change}
+                        </p>
+                    </div>
+                </div>
+                <div className="return line-items">
+                    <p className={data.profitChangeClassNames}>
+                        {data.profitPercent}%
+                    </p>
+                    <p className="current-value">
+                        {Utils.currency(data.value)}
+                    </p>
+                    <p className={data.profitChangeClassNames}>
+                        {Utils.currency(data.profit)}
+                    </p>
+                </div>
+            </div>
+        )
+    }
+}
 
 class Stock extends Component {
 
@@ -61,6 +130,17 @@ class Stock extends Component {
             up: profit > 0
         });
 
+        let data = {
+            stock,
+            cost,
+            value,
+            profit,
+            daysOld,
+            profitPercent,
+            profitChangeClassNames,
+            priceChangeClassNames
+        };
+
         let stockClassNames = classnames({
             stock: true,
             animated: true,
@@ -69,42 +149,7 @@ class Stock extends Component {
 
         return (
             <div className={stockClassNames} onClick={this.editStock}>
-                <div className="investment line-items">
-                    <p className="bought-price">
-                        {Utils.currency(stock.price)}
-                    </p>
-                    <p className="cost">
-                        {Utils.currency(cost)}
-                    </p>
-                    <p className="age">
-                        {daysOld} days ago
-                    </p>
-                </div>
-                <div className="details">
-                    <RadialProgress className="profit-meter" value={profitPercent}/>
-                    <div className="content">
-                        <p className="symbol">
-                            {stock.symbol}
-                        </p>
-                        <p className="market-price">
-                            {Utils.currency(stock.currentPrice)}
-                        </p>
-                        <p className={priceChangeClassNames}>
-                            {stock.change}
-                        </p>
-                    </div>
-                </div>
-                <div className="return line-items">
-                    <p className={profitChangeClassNames}>
-                        {profitPercent}%
-                    </p>
-                    <p className="current-value">
-                        {Utils.currency(value)}
-                    </p>
-                    <p className={profitChangeClassNames}>
-                        {Utils.currency(profit)}
-                    </p>
-                </div>
+                <StockSummary data={data}/>
                 <ul className="actions">
                     <li onClick={this.deleteStock}>✕</li>
                 </ul>
