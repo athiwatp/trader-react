@@ -30,7 +30,7 @@ class WealthMeter extends Component {
             let percent = parseFloat((WEALTH_METER_SIZE * wp) / wealth.current);
             return Number(percent.toFixed(2));
         });
-        wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+        // wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
 
         let angles = [];
         let rotateAngles = wealthPercents.slice(0);
@@ -54,12 +54,14 @@ class WealthMeter extends Component {
                     width={size}
                     height={size / 2}
                     viewBox={`0 0 ${size} ${size / 2}`}
+                    shapeRendering={'geometricPrecision'}
                 >
                     <defs>
                         <radialGradient id="purpleGrad" gradientUnits="userSpaceOnUse" cx="50%" cy="100%" r="90%">
-                            <stop stopColor="#5a1a66" offset="0"/>
-                            <stop stopColor="#36103d" offset="1">
-                                <animate attributeName="offset" dur="1s" values="0;.20;.40;.60;.80;.95" fill="freeze" />
+                            <stop stopColor="#f7f4fc" offset="0">
+                            </stop>
+                            <stop stopColor="#bca7e3" offset="0">
+                                <animate attributeName="offset" dur=".5s" values="0;.20;.40;.60;.80;.95;" fill="freeze" />
                             </stop>
                         </radialGradient>
                     </defs>
