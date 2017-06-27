@@ -1,2 +1,18 @@
 .wealth-meter {
 }
+
+.wealth-meter .wealth-current {
+    font-size: 1.7rem;
+}
+
+.wealth-meter .wealth-change {
+    font-size: 1rem;
+}
+
+.wealth-meter .wealth-change.up {
+    fill: #27ae60;
+}
+
+.wealth-meter .wealth-change.down {
+    fill: #e74c3c;
+}

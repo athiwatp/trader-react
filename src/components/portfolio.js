@@ -26,26 +26,14 @@ class StockPortfolio extends Component {
             return memo;
         }, {invested: 0, current: 0});
 
-        let wealthChange = wealth.current - wealth.invested;
-        let wealthChangeClassNames = classnames({
-            'wealth-change': true,
-            'volatile-value': true,
-            up: wealthChange > 0,
-            down: wealthChange < 0
-        });
-
         return (
             <div className="stock-portfolio">
                 <div className="wealth">
-                    <WealthMeter wealth={wealth} stocks={this.props.stocks}/>
-                    <div className="wealth-info">
-                        <p className="current">
-                            {Utils.currency(wealth.current)}
-                        </p>
-                        <p className={wealthChangeClassNames}>
-                            {wealthChange.toLocaleString()}
-                        </p>
-                    </div>
+                    <WealthMeter
+                        wealth={wealth}
+                        stocks={this.props.stocks}
+                    />
+
                     <ul className="portfolio-actions">
                         <li>
                             <button onClick={this.props.onToggleStockMode}>toggle</button>

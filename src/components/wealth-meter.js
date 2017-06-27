@@ -1,11 +1,16 @@
 import React, {Component} from "react";
+import classnames from "classnames";
+
+import Utils from "../utils";
 import "./wealth-meter.css";
-import colors from  '../data/colors';
+import colors from "../data/colors";
 
 let size = 300;
 let centerX = size / 2;
 let centerY = size / 2;
 let radius = size / 2;
+let GAP = 10;
+let innerRadius = radius - GAP;
 let WEALTH_METER_SIZE = 180;
 
 let angleInRadians = (angleInDegrees) => -angleInDegrees * Math.PI / 180.0;
@@ -25,12 +30,23 @@ class WealthMeter extends Component {
             let percent = parseFloat((WEALTH_METER_SIZE * wp) / wealth.current);
             return Number(percent.toFixed(2));
         });
+        wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
         let angles = [];
         let rotateAngles = wealthPercents.slice(0);
         rotateAngles.reduce((memo, ra) => {
             angles.push(memo);
             return memo + ra;
         }, 0);
+
+        let innerCircle = arcXY(centerX, centerY, innerRadius, angleInRadians(180));
+
+        let wealthChange = wealth.current - wealth.invested;
+        let indicator = wealthChange >= 0 ? '▲' : '▼';
+        let wealthChangeClassNames = classnames({
+            'wealth-change': true,
+            up: wealthChange >= 0,
+            down: wealthChange < 0
+        })
         return (
             <div className="wealth-meter">
                 <svg
@@ -62,6 +78,26 @@ class WealthMeter extends Component {
                             )
                         })
                     }
+                    <path
+                        fill="#fff"
+                        d={`M${centerX},${centerY} l${centerY - GAP},0 A${centerX},${centerY} 0 0,0 ${innerCircle.x},${innerCircle.y} z`}
+                    />
+                    <text
+                        className="wealth-current"
+                        x={centerX}
+                        y={centerY - 40}
+                        textAnchor="middle"
+                    >
+                        {Utils.currency(wealth.current)}
+                    </text>
+                    <text
+                        className={wealthChangeClassNames}
+                        x={centerX}
+                        y={centerY - 15}
+                        textAnchor="middle"
+                    >
+                        {indicator} {Utils.currency(wealthChange)}
+                    </text>
                 </svg>
             </div>
         )

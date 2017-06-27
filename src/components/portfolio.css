@@ -4,8 +4,6 @@
 }
 
 .wealth-info {
-    margin-top: -20px;
-    transform: perspective(60px) rotateX(30deg);
     background-color: #fafafa;
     padding: 20px 0;
 }
