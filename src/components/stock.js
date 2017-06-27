@@ -59,15 +59,7 @@ class StockDetail extends Component {
                 <div className="details column">
                     <RadialProgress className="profit-meter" value={data.profitPercent}/>
                     <div className="content">
-                        <p className="symbol">
-                            {stock.symbol}
-                        </p>
-                        <p className="market-price">
-                            {Utils.currency(stock.currentPrice)}
-                        </p>
-                        <p className={data.priceChangeClassNames}>
-                            {stock.change}
-                        </p>
+
                     </div>
                 </div>
                 <div className="return column">
