@@ -30,7 +30,8 @@ class WealthMeter extends Component {
             let percent = parseFloat((WEALTH_METER_SIZE * wp) / wealth.current);
             return Number(percent.toFixed(2));
         });
-        wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+        // wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+
         let angles = [];
         let rotateAngles = wealthPercents.slice(0);
         rotateAngles.reduce((memo, ra) => {
