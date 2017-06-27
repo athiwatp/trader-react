@@ -109,7 +109,8 @@ class Stock extends Component {
         return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
     }
 
-    deleteStock = () => {
+    deleteStock = (e) => {
+        e.stopPropagation();
         this.setState({
             deleted: true
         }, () => {

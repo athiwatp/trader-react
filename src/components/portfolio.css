@@ -1,21 +1,29 @@
 .wealth {
     margin-top: 10px;
     text-align: center;
+}
+
+.wealth-info {
+    margin-top: -20px;
+    transform: perspective(60px) rotateX(30deg);
+    background-color: #fafafa;
     padding: 20px 0;
 }
 
-.wealth .current {
-    color: #0097A7;
-    font-size: 1.6rem;
-    letter-spacing: 1pt;
+.wealth-info .current {
+    font-size: 2rem;
 }
 
-.wealth-change {
-    margin-top: 10px;
-    letter-spacing: 1pt;
+.wealth-info .wealth-change {
+    font-size: .8rem;
+    margin-top: 5px;
 }
 
 .empty-portfolio {
     text-align: center;
     padding-top: 200px;
+}
+
+.portfolio-actions {
+    display: none;
 }
