@@ -1,15 +1,27 @@
 .wealth-meter {
 }
 
+.wealth-meter .wealth-label {
+    fill: #cacaca;
+    font-size: .6rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .4rem;
+    opacity: .5;
+}
 .wealth-meter .wealth-current {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.7rem;
     font-weight: 300;
     fill: #f2ddf6;
+    letter-spacing: .1rem;
+    text-shadow: 1px 1px 20px #000;
 }
 
 .wealth-meter .wealth-change {
-    font-size: 1rem;
+    font-size: .91rem;
+    letter-spacing: .1rem;
+    text-shadow: 1px 1px 20px #000;
 }
 
 .wealth-meter .wealth-change.up {

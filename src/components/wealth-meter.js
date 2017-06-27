@@ -90,7 +90,14 @@ class WealthMeter extends Component {
                         fill="url(#purpleGrad)"
                         d={`M${centerX},${centerY} l${centerY - GAP},0 A${centerX},${centerY} 0 0,0 ${innerCircle.x},${innerCircle.y} z`}
                     />
-
+                    <text
+                        className="wealth-label"
+                        x={centerX}
+                        y={centerY - 75}
+                        textAnchor="middle"
+                    >
+                        wealth
+                    </text>
                     <text
                         className="wealth-current"
                         x={centerX}

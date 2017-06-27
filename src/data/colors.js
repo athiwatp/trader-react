@@ -17,6 +17,6 @@ export default {
         'f89f83',
         'fcd1c3',
         'abdda4',
-        'd9efd5'
+        '52b544'
     ]
 }
