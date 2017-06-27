@@ -2,7 +2,10 @@
 }
 
 .wealth-meter .wealth-current {
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.7rem;
+    font-weight: 300;
+    fill: #f2ddf6;
 }
 
 .wealth-meter .wealth-change {

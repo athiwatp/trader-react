@@ -30,7 +30,7 @@ class WealthMeter extends Component {
             let percent = parseFloat((WEALTH_METER_SIZE * wp) / wealth.current);
             return Number(percent.toFixed(2));
         });
-        // wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+        wealthPercents = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
 
         let angles = [];
         let rotateAngles = wealthPercents.slice(0);
@@ -55,6 +55,18 @@ class WealthMeter extends Component {
                     height={size / 2}
                     viewBox={`0 0 ${size} ${size / 2}`}
                 >
+                    <defs>
+                        <radialGradient id="upGrad" gradientUnits="userSpaceOnUse" cx="50%" cy="100%" r="90%">
+                            <stop stopColor="#5a1a66" offset="0"/>
+                            <stop stopColor="#36103d" offset="1">
+                                <animate attributeName="offset" dur="1s" values="0;.20;.40;.60;.80;.95" fill="freeze" />
+                            </stop>
+                        </radialGradient>
+                        <radialGradient id="downGrad" gradientUnits="userSpaceOnUse" cx="50%" cy="100%" r="90%">
+                            <stop stopColor="#e6c3cc" offset="0"/>
+                            <stop stopColor="#ff0000" offset="1" stopOpacity={.2} />
+                        </radialGradient>
+                    </defs>
                     {
                         wealthPercents.map((wp, idx) => {
                             let p = arcXY(centerX, centerY, radius, angleInRadians(wp));
@@ -64,7 +76,8 @@ class WealthMeter extends Component {
                                     key={'stock-' + idx}
                                     fill={`#${colors.styleOne[idx]}`}
                                     d={`M${centerX},${centerY} l${centerX},0 A${centerX},${centerY} 0 0,0 ${p.x},${p.y} z`}
-                                    strokeWidth={5}
+                                    strokeWidth={1}
+                                    stroke="#eaeaea"
                                 >
                                     <animateTransform
                                         attributeName="transform"
@@ -80,9 +93,12 @@ class WealthMeter extends Component {
                         })
                     }
                     <path
-                        fill="#fff"
+                        stroke="#fdf8fd"
+                        strokeWidth={2}
+                        fill="url(#upGrad)"
                         d={`M${centerX},${centerY} l${centerY - GAP},0 A${centerX},${centerY} 0 0,0 ${innerCircle.x},${innerCircle.y} z`}
                     />
+
                     <text
                         className="wealth-current"
                         x={centerX}
