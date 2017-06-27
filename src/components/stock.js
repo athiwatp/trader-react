@@ -13,7 +13,10 @@ class StockSummary extends Component {
         let {stock} = data;
         return (
             <div className="stock-summary">
-                <div className="symbol column">{stock.symbol}</div>
+                <div className="symbol column">
+                    <p>{stock.symbol}</p>
+                    <em className="quantity">{stock.quantity}</em>
+                </div>
                 <div className="price column">
                     <p className="current">{Utils.currency(stock.currentPrice)}</p>
                     <em className={data.priceChangeClassNames}>{stock.change}</em>

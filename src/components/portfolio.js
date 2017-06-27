@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import WealthMeter from "./wealth-meter";
 import Stock from "./stock";
-import Utils from "../utils";
-import classnames from "classnames";
 import "./portfolio.css";
 
 class EmptyPortfolio extends Component {
@@ -33,15 +31,6 @@ class StockPortfolio extends Component {
                         wealth={wealth}
                         stocks={this.props.stocks}
                     />
-
-                    <ul className="portfolio-actions">
-                        <li>
-                            <button onClick={this.props.onToggleStockMode}>toggle</button>
-                        </li>
-                        <li>
-                            <button onClick={this.props.onAddStock}>Add</button>
-                        </li>
-                    </ul>
                 </div>
                 {
                     this.props.stocks.map((stock) => <Stock key={stock.id} stock={stock} {...this.props} />)

@@ -5,7 +5,7 @@
 
 .stock-summary .column {
     flex: 1;
-    text-align: left;
+    text-align: center;
 }
 
 .stock-summary .column:first-child {
@@ -18,15 +18,23 @@
 
 .stock-summary .symbol {
     font-size: 1rem;
+    color: #000000;
 }
 
+.stock-summary .quantity {
+    font-size: .9rem;
+    color: #666666;
+    margin-top: 10px;
+    display: block;
+}
 .stock-summary .price .current {
+    color: #000;
     font-size: 1rem;
-    font-weight: 300;
 }
 
 .stock-summary .profit .current {
     font-size: 1rem;
+    color: #000000;
 }
 
 .stock-summary .volatile-value {

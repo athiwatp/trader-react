@@ -1,4 +1,4 @@
-.wealth-meter {
+.wealth-meter svg {
 }
 
 .wealth-meter .wealth-label {
@@ -12,8 +12,8 @@
 .wealth-meter .wealth-current {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.7rem;
-    font-weight: 300;
-    fill: #09050f;
+    font-weight: bold;
+    fill: #281642;
     letter-spacing: .1rem;
 }
 

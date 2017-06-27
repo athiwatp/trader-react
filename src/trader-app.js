@@ -19,10 +19,10 @@ class TraderApp extends Component {
         super(props);
         this.state = Object.assign({
             stocks: [],
-            stockToEdit: EMPTY_STOCK,
             stockMode: STOCK_MODE.DETAIL
         }, this.syncFromStorage(), {
-            showForm: false
+            showForm: false,
+            stockToEdit: EMPTY_STOCK
         });
 
     }
@@ -48,6 +48,7 @@ class TraderApp extends Component {
             }
             this.setState({
                 stocks: stocks,
+                stockToEdit: EMPTY_STOCK
             }, () => {
                 this.syncToStorage(this.state);
                 this.fetchMarketData();
@@ -79,7 +80,8 @@ class TraderApp extends Component {
 
     closeStockForm = () => {
         this.setState({
-            showForm: false
+            showForm: false,
+            stockToEdit: EMPTY_STOCK
         });
     }
 
@@ -184,7 +186,11 @@ class TraderApp extends Component {
             <Router>
                 <div className="app">
 
-                    <AppBar/>
+                    <AppBar
+                        stockMode={this.state.stockMode}
+                        onAddStock={this.addStockForm}
+                        onToggleStockMode={this.toggleStockMode}
+                    />
                     <div className="content">
                         <Route exact path="/" render={() => <Portfolio
                             stocks={this.state.stocks}
