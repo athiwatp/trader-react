@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+
+import WealthMeter from './wealth-meter';
 import Stock from "./stock";
 import Utils from "../utils";
 import classnames from "classnames";
@@ -25,8 +27,6 @@ class StockPortfolio extends Component {
         }, {invested: 0, current: 0});
 
         let wealthChange = wealth.current - wealth.invested;
-
-
         let wealthChangeClassNames = classnames({
             'wealth-change': true,
             'volatile-value': true,
@@ -36,6 +36,7 @@ class StockPortfolio extends Component {
         return (
             <div className="stock-portfolio">
                 <div className="wealth">
+                    <WealthMeter wealth={wealth} stocks={this.props.stocks}/>
                     <p className="current">
                         {Utils.currency(wealth.current)}
                     </p>
@@ -43,7 +44,12 @@ class StockPortfolio extends Component {
                         {wealthChange.toLocaleString()}
                     </p>
                     <ul>
-                        <button onClick={this.props.onToggleStockMode}>toggle</button>
+                        <li>
+                            <button onClick={this.props.onToggleStockMode}>toggle</button>
+                        </li>
+                        <li>
+                            <button onClick={this.props.onAddStock}>Add</button>
+                        </li>
                     </ul>
                 </div>
                 {

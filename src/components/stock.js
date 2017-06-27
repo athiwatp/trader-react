@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import classnames from "classnames";
 import "./stock.css";
 import "./stock-summary.css";
-import './stock-detail.css';
+import "./stock-detail.css";
 import Utils from "../utils";
 import {STOCK_MODE} from "../data/constants";
 import RadialProgress from "./radial-progress";
@@ -35,15 +35,23 @@ class StockDetail extends Component {
         return (
             <div className="stock-detail">
                 <div className="investment column">
-                    <p className="bought-price">
-                        {Utils.currency(stock.price)}
-                    </p>
-                    <p className="cost">
-                        {Utils.currency(data.cost)}
-                    </p>
-                    <p className="age">
-                        {data.daysOld} days ago
-                    </p>
+                    <ul className="line-items">
+                        <li>
+                            <p className="bought-price">
+                                {Utils.currency(stock.price)}
+                            </p>
+                        </li>
+                        <li>
+                            <p className="cost">
+                                {Utils.currency(data.cost)}
+                            </p>
+                        </li>
+                        <li>
+                            <p className="age">
+                                {data.daysOld} days ago
+                            </p>
+                        </li>
+                    </ul>
                 </div>
                 <div className="details column">
                     <RadialProgress className="profit-meter" value={data.profitPercent}/>
@@ -60,15 +68,23 @@ class StockDetail extends Component {
                     </div>
                 </div>
                 <div className="return column">
-                    <p className={data.profitChangeClassNames}>
-                        {data.profitPercent}%
-                    </p>
-                    <p className="current-value">
-                        {Utils.currency(data.value)}
-                    </p>
-                    <p className={data.profitChangeClassNames}>
-                        {Utils.currency(data.profit)}
-                    </p>
+                    <ul className="line-items">
+                        <li>
+                            <p className={data.profitChangeClassNames}>
+                                {data.profitPercent}%
+                            </p>
+                        </li>
+                        <li>
+                            <p className="current-value">
+                                {Utils.currency(data.value)}
+                            </p>
+                        </li>
+                        <li>
+                            <p className={data.profitChangeClassNames}>
+                                {Utils.currency(data.profit)}
+                            </p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         )

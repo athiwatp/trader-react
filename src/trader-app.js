@@ -195,9 +195,6 @@ class TraderApp extends Component {
                             onToggleStockMode={this.toggleStockMode}
                         />}/>
                     </div>
-
-                    <button className="add-stock" onClick={this.addStockForm}>+</button>
-
                     <Overlay
                         title={this.state.formMode === 'edit' ? 'Edit Stock' : 'Add Stock'}
                         open={this.state.showForm}

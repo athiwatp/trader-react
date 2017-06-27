@@ -14,3 +14,7 @@
 .stock-detail .column:last-child {
     padding-right: 20px;
 }
+
+.stock-detail .line-items li {
+    margin-top: 15px;
+}
