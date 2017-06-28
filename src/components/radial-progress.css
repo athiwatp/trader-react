@@ -3,23 +3,59 @@
 }
 
 .radial-progress .tick {
-    stroke: #dc3a79;
-    opacity: .3;
+    stroke: #cacaca;
 }
 
 .radial-progress .tick.quarterTick {
-    stroke: #dc3a79;
+    stroke: #4d4d4d;
     stroke-width: 2;
     opacity: 1;
 }
 
-.radial-progress .tickLabel {
+.radial-progress .tick-labels {
     font-size: .6rem;
-    fill: #aaa;
-    opacity: .3;
+    fill: #333;
 }
 
 .radial-progress .value {
-    fill: #fff;
-    font-size: .9rem;
+    fill: #eaeaea;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.radial-track {
+    stroke: #dadada;
+    stroke-width: 12;
+}
+
+.radial-progress-bar {
+    stroke-width: 12;
+}
+
+.radial-progress-bar.up {
+    stroke: #2ECC40;
+}
+
+.radial-progress-bar.down {
+    stroke: #FF4136;
+}
+
+.needle .point {
+    fill: #3d3d3d;
+}
+
+.needle .center {
+    fill: #3d3d3d;
+}
+
+.radial-progress .indicator {
+    font-size: .6rem;
+}
+
+.radial-progress .indicator.up {
+    fill: #2ECC40;
+}
+
+.radial-progress .indicator.down {
+    fill: #FF4136;
 }

@@ -1,7 +1,7 @@
 .stock-detail {
     display: flex;
-    background-color: #2b2346;
-    color: #dc3a79;
+    background-color: #fff;
+    color: #4d4d4d;
     width: 80%;
     margin: 0 auto;
     border-radius: 10px;
@@ -24,8 +24,7 @@
 .stock-detail .current-price {
     margin-top: 20px;
     font-size: 1.8rem;
-    color: #ffffff;
-    text-shadow: 0 0 5px #000;
+    color: #333;
 }
 
 .stock-detail .price-change {

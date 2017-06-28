@@ -12,6 +12,11 @@ class RadialProgress extends Component {
     render() {
 
         let val = this.props.value;
+        let size = 120;
+        let radius = size / 2;
+        let trackRadius = radius - 6;
+        let centerX = size / 2;
+        let centerY = size / 2;
 
         if (val < -100) {
             val = -100;
@@ -19,25 +24,45 @@ class RadialProgress extends Component {
             val = 100;
         }
 
-        let progressColor = (val < 0) ? '#FF4136' : '#2ECC40';
+        let progressClassNames = classnames({
+            'radial-progress-bar': true,
+            'up': val >= 0,
+            'down': val < 0
+        });
+        let indicatorClassNames = classnames({
+            'indicator': true,
+            'up': val >= 0,
+            'down': val < 0
+        });
         let offset = this.calcProgressOffset(val / 200);
 
-        let needleAngle = (270 * val) / 100;
+        let needleAngle = (180 * val) / 100;
+
         let radialTicks = [];
         for (let i = 0; i <= 360; i += 10) {
             radialTicks.push(i);
         }
         return (
-            <svg className="radial-progress" width="120" height="120" viewBox="0 0 120 120">
+            <svg className="radial-progress" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
                 <defs>
-                    <line id="tick" x1="104" y1="60" x2="110" y2="60"
-                          strokeLinecap={'round'}/>
+
+                    <line
+                        id="tick"
+                        x1={size - 16}
+                        y1={centerY}
+                        x2={size - 10}
+                        y2={centerY}
+                        strokeLinecap={'round'}
+                    />
+
                     <radialGradient id="radialCenter" cx="50%" cy="50%" r="50%">
                         <stop stopColor="#dc3a79" offset="0"/>
                         <stop stopColor="#241d3b" offset="1"/>
                     </radialGradient>
+
                 </defs>
-                <g id="points">
+
+                <g id="ticks">
                     {
                         radialTicks.map((tick) => {
                             let tickClassNames = classnames({
@@ -47,24 +72,43 @@ class RadialProgress extends Component {
                             return <use className={tickClassNames}
                                         key={'tick-' + tick}
                                         href="#tick"
-                                        transform={`rotate(${tick} 60 60)`}
+                                        transform={`rotate(${tick} ${centerX} ${centerY})`}
                             />
                         })
                     }
 
                 </g>
-                <g transform="">
-                    <text className="tickLabel" x={85} y={65} textAnchor="middle" transform="rotate(90 90,65)">0</text>
-                    <text className="tickLabel" x={45} y={33} textAnchor="middle" transform="rotate(90 53,35)">50</text>
-                    <text className="tickLabel" x={15} y={65} textAnchor="middle" transform="rotate(90 20,65)">100
-                    </text>
-                    <text className="tickLabel" x={50} y={93} textAnchor="middle" transform="rotate(90 53,95)">50</text>
+
+                <g id="tickLabels" className="tick-labels">
+                    <text x={85} y={65} textAnchor="middle" transform="rotate(90 90,65)">0</text>
+                    <text x={45} y={33} textAnchor="middle" transform="rotate(90 53,35)">50</text>
+                    <text x={15} y={65} textAnchor="middle" transform="rotate(90 20,65)">100</text>
+                    <text x={50} y={93} textAnchor="middle" transform="rotate(90 53,95)">50</text>
                 </g>
-                <circle cx="60" cy="60" r="54" fill="none" stroke="#fff" strokeWidth="12"/>
-                <circle cx="60" cy="60" r="54" fill="none" stroke={progressColor} strokeWidth="12"
-                        strokeDasharray="339.292" strokeDashoffset={offset}/>
-                <g id="needle">
-                    <polygon points="57,60 65,58 60,0" fill="yellow">
+
+                <circle
+                    className="radial-track"
+                    cx={centerX}
+                    cy={centerY}
+                    r={trackRadius}
+                    fill="none"
+                />
+
+                <circle
+                    className={progressClassNames}
+                    cx={centerX}
+                    cy={centerY}
+                    r={trackRadius}
+                    fill="none"
+                    strokeDasharray="339.292"
+                    strokeDashoffset={offset}
+                />
+
+                <g id="needle" className="needle">
+                    <polygon
+                        className="point"
+                        points="60,55 60,65 120,60"
+                    >
                         <animateTransform
                             attributeName="transform"
                             type="rotate"
@@ -74,10 +118,34 @@ class RadialProgress extends Component {
                             fill="freeze"
                         />
                     </polygon>
-                    <circle cx="60" cy="60" r="20" fill="url(#radialCenter)" stroke="yellow" strokeWidth={2}/>
+                    <circle className="center" cx={centerX} cy={centerY} r="23"/>
                 </g>
-                <text x="60" y="65" fill="#000" textAnchor="middle" transform="rotate(90 60,60)" className="value">
+                <text
+                    x={centerX}
+                    y={'50'}
+                    textAnchor="middle"
+                    transform="rotate(90 60,60)"
+                    className={indicatorClassNames}
+                >
+                    {this.props.value >= 0 ? '▲' : ''}
+                </text>
+                <text
+                    x={centerX}
+                    y="67"
+                    textAnchor="middle"
+                    transform="rotate(90 60,60)"
+                    className="value"
+                >
                     {this.props.value}
+                </text>
+                <text
+                    x={centerX}
+                    y={'78'}
+                    textAnchor="middle"
+                    transform="rotate(90 60,60)"
+                    className={indicatorClassNames}
+                >
+                    {this.props.value >= 0 ? '' : '▼'}
                 </text>
             </svg>
         );
