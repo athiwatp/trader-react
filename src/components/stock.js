@@ -23,7 +23,7 @@ class StockSummary extends Component {
                 </div>
                 <div className="profit column">
                     <p className="current">{Utils.currency(data.value)}</p>
-                    <em className={data.profitChangeClassNames}>{Utils.currency(data.profit)}</em>
+                    <em className={data.profitChangeClassNames}>{(data.profit).toLocaleString()}</em>
                 </div>
             </div>
         )
@@ -34,7 +34,6 @@ class StockDetail extends Component {
     render() {
         let data = this.props.data;
         let stock = data.stock;
-
         return (
             <div className="stock-detail">
                 <div className="primary column">
@@ -46,7 +45,16 @@ class StockDetail extends Component {
                     <RadialProgress className="profit-meter" value={data.profitPercent}/>
                 </div>
                 <div className="secondary column">
-
+                    <p className="investment">
+                        <em>
+                            <span className="icon-database"/> {stock.quantity}
+                        </em>
+                        <em>
+                            <span className="icon-money"/> {Utils.currency(stock.price) }
+                        </em>
+                    </p>
+                    <p className="current-worth">{Utils.currency(data.value)}</p>
+                    <p className={data.profitChangeClassNames}>{data.profit.toLocaleString()}</p>
                 </div>
             </div>
         )

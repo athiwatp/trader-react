@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?sjswg0');
-  src:  url('fonts/icomoon.eot?sjswg0#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?sjswg0') format('truetype'),
-    url('fonts/icomoon.woff?sjswg0') format('woff'),
-    url('fonts/icomoon.svg?sjswg0#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?p02kk9');
+  src:  url('fonts/icomoon.eot?p02kk9#iefix') format('embedded-opentype'),
+  url('fonts/icomoon.ttf?p02kk9') format('truetype'),
+  url('fonts/icomoon.woff?p02kk9') format('woff'),
+  url('fonts/icomoon.svg?p02kk9#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,15 +24,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-adjust:before {
-  content: "\f042";
-}
 .icon-plus-circle:before {
   content: "\f055";
 }
-.icon-times-circle:before {
-  content: "\f057";
+.icon-expand:before {
+  content: "\f065";
 }
-.icon-circle:before {
-  content: "\f111";
+.icon-compress:before {
+  content: "\f066";
+}
+.icon-calendar:before {
+  content: "\f073";
+}
+.icon-money:before {
+  content: "\f0d6";
+}
+.icon-database:before {
+  content: "\f1c0";
 }

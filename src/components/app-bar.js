@@ -9,11 +9,11 @@ class AppBar extends Component {
         let toggleElm = null;
         if (this.props.stockMode === STOCK_MODE.DETAIL) {
             toggleElm = (<button onClick={this.props.onToggleStockMode}>
-                <span className="icon-adjust"/><i>Short</i>
+                <span className="icon-compress"/><i>Short</i>
             </button>);
         } else {
             toggleElm = (<button onClick={this.props.onToggleStockMode}>
-                <span className="icon-circle"/><i>Detail</i>
+                <span className="icon-expand"/><i>Detail</i>
             </button>);
         }
         return (
