@@ -212,6 +212,7 @@ class TraderApp extends Component {
                             mode={this.state.formMode}
                             stock={this.state.stockToEdit}
                             onSave={this.saveTransaction}
+                            onClose={this.closeStockForm}
                         />
                     </Overlay>
                 </div>
