@@ -27,11 +27,11 @@
 }
 
 .radial-progress-bar.up {
-    stroke: #2ECC40;
+    stroke: #43A047;
 }
 
 .radial-progress-bar.down {
-    stroke: #FF4136;
+    stroke: #e53935;
 }
 
 .needle .point,
@@ -51,9 +51,9 @@
 }
 
 .radial-progress .indicator.up {
-    fill: #2ECC40;
+    fill: #43A047;
 }
 
 .radial-progress .indicator.down {
-    fill: #FF4136;
+    fill: #e53935;
 }

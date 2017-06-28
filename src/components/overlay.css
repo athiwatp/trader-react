@@ -41,8 +41,7 @@
 .overlay header {
     position: relative;
     padding: 20px 0;
-    border-bottom: 1px solid #3779f2;
-    background-color: #3779f2;
+    background-color: #212121;
     text-transform: uppercase;
     letter-spacing: 1pt;
 }
