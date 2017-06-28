@@ -1,3 +1,4 @@
+import $ from "jquery";
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
@@ -11,7 +12,6 @@ import {EMPTY_STOCK, STOCK_MODE} from "./data/constants";
 
 const STORAGE_KEY = 'traderState';
 const GOOGLE_FINANCE = 'https://finance.google.com/finance/info?q=';
-const JUNK_PREFIX = '//';
 
 class TraderApp extends Component {
 
@@ -135,18 +135,15 @@ class TraderApp extends Component {
         let stocks = this.state.stocks;
         if (stocks.length > 0) {
             let quoteURL = GOOGLE_FINANCE + stocks.map((s) => `NSE:${s.symbol.toUpperCase()}`).join(',');
-
-            fetch(quoteURL, {
-                mode: this.isLocalhost() ? '' : 'no-cors'
-            }).then((response) => response.text()).then((body) => {
-                if (body) {
-                    body = body.substr(body.indexOf(JUNK_PREFIX) + JUNK_PREFIX.length);
-                    body = body.trim();
-                    this.updatePortfolio(JSON.parse(body));
+            $.ajax({
+                url: quoteURL,
+                jsonp: 'callback',
+                dataType: 'jsonp',
+                success: (response) => {
+                    if (response) {
+                        this.updatePortfolio(response);
+                    }
                 }
-            }).catch((err) => {
-                alert('Unable to get market data! Try again later');
-                console.error(err);
             });
         }
     }
