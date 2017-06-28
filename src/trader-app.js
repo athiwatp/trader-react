@@ -21,6 +21,7 @@ class TraderApp extends Component {
             stocks: [],
             stockMode: STOCK_MODE.DETAIL
         }, this.syncFromStorage(), {
+            formMode: '',
             showForm: false,
             stockToEdit: EMPTY_STOCK
         });
@@ -81,7 +82,8 @@ class TraderApp extends Component {
     closeStockForm = () => {
         this.setState({
             showForm: false,
-            stockToEdit: EMPTY_STOCK
+            stockToEdit: EMPTY_STOCK,
+            formMode: ''
         });
     }
 
