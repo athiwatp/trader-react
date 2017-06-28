@@ -13,11 +13,6 @@ let GAP = 10;
 let innerRadius = radius - GAP;
 let WEALTH_METER_SIZE = 180;
 
-let angleInRadians = (angleInDegrees) => -angleInDegrees * Math.PI / 180.0;
-let arcXY = (cx, cy, r, radians) => ({
-    x: cx + r * Math.cos(radians),
-    y: cy + r * Math.sin(radians)
-});
 
 class WealthMeter extends Component {
 
@@ -39,7 +34,7 @@ class WealthMeter extends Component {
             return memo + ra;
         }, 0);
 
-        let innerCircle = arcXY(centerX, centerY, innerRadius, angleInRadians(180));
+        let innerCircle = Utils.arcXY(centerX, centerY, innerRadius, Utils.angleInRadians(180));
 
         let wealthChange = wealth.current - wealth.invested;
         let indicator = wealthChange >= 0 ? '▲' : '▼';
@@ -67,7 +62,7 @@ class WealthMeter extends Component {
                     </defs>
                     {
                         wealthPercents.map((wp, idx) => {
-                            let p = arcXY(centerX, centerY, radius, angleInRadians(wp));
+                            let p = Utils.arcXY(centerX, centerY, radius, Utils.angleInRadians(wp));
                             return (
                                 <path
                                     transform={`rotate(${-angles[idx]},${centerX}, ${centerY})`}

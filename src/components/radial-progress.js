@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import classnames from "classnames";
+import Utils from "../utils";
 import "./radial-progress.css";
 
 class RadialProgress extends Component {
@@ -20,9 +21,9 @@ class RadialProgress extends Component {
         }
 
         let progressColor = (val < 0) ? '#e74c3c' : '#27ae60';
+        let offset = this.calcProgressOffset(val / 200);
 
-        let offset = this.calcProgressOffset(val / 100);
-        let needleAngle = (360 * val) / 100;
+        let needleAngle = (180 * val) / 100;
         let radialTicks = [];
         for (let i = 0; i <= 360; i += 10) {
             radialTicks.push(i);
@@ -49,35 +50,40 @@ class RadialProgress extends Component {
                     }
 
                 </g>
-                <g transform="translate(3,-15)">
-                    <text className="tickLabel" x={95} y={70} textAnchor="center" transform="rotate(90 90,65)">0</text>
-                    <text className="tickLabel" x={53} y={35} textAnchor="center" transform="rotate(90 53,35)">50</text>
-                    <text className="tickLabel" x={20} y={65} textAnchor="center" transform="rotate(90 20,65)">100
+                <g transform="">
+                    <text className="tickLabel" x={85} y={65} textAnchor="middle" transform="rotate(90 90,65)">0</text>
+                    <text className="tickLabel" x={45} y={33} textAnchor="middle" transform="rotate(90 53,35)">50</text>
+                    <text className="tickLabel" x={15} y={65} textAnchor="middle" transform="rotate(90 20,65)">100
                     </text>
-                    <text className="tickLabel" x={60} y={95} textAnchor="center" transform="rotate(90 53,95)">50</text>
+                    <text className="tickLabel" x={50} y={93} textAnchor="middle" transform="rotate(90 53,95)">50</text>
                 </g>
                 <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" strokeWidth="12"/>
                 <circle cx="60" cy="60" r="54" fill="none" stroke={progressColor} strokeWidth="12"
                         strokeDasharray="339.292" strokeDashoffset={offset}/>
-                <circle cx="60" cy="60" r="5" fill="#9a9a9a"/>
-                <line
-                    x1="60"
-                    y1="60"
-                    x2="120"
-                    y2="60"
-                    stroke="#9a9a9a"
-                    strokeWidth={2}
-                    strokeLinecap={'round'}
-                >
-                    <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from={`0 60 60`}
-                        to={`${needleAngle} ${60} ${60}`}
-                        dur=".5s"
-                        fill="freeze"
-                    />
-                </line>
+                <g id="needle">
+                    <line
+                        x1="60"
+                        y1="60"
+                        x2="120"
+                        y2="60"
+                        stroke="#5a5a5a"
+                        strokeWidth={2}
+                        strokeLinecap={'round'}
+                    >
+                        <animateTransform
+                            attributeName="transform"
+                            type="rotate"
+                            from={`0 60 60`}
+                            to={`${needleAngle} ${60} ${60}`}
+                            dur=".5s"
+                            fill="freeze"
+                        />
+                    </line>
+                    <circle cx="60" cy="60" r="20" fill="#cacaca"/>
+                </g>
+                <text x="60" y="65" fill="#000" textAnchor="middle" transform="rotate(90 60,60)">
+                    {val}
+                </text>
             </svg>
         );
     }
