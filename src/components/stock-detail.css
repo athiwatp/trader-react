@@ -1,12 +1,12 @@
 .stock-detail {
     display: flex;
-    background-color: #fff;
     color: #4d4d4d;
     width: 80%;
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 5px;
     max-height: 140px;
     height: 140px;
+    background-color: #3b4044;
 }
 
 .stock-detail .column {
@@ -20,11 +20,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 300;
+    color: #cacaca;
 }
 .stock-detail .current-price {
     margin-top: 20px;
     font-size: 1.8rem;
-    color: #333;
+    color: #D4AF37;
 }
 
 .stock-detail .price-change {

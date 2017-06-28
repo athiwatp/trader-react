@@ -52,11 +52,12 @@ class WealthMeter extends Component {
                     shapeRendering={'geometricPrecision'}
                 >
                     <defs>
-                        <radialGradient id="purpleGrad" gradientUnits="userSpaceOnUse" cx="50%" cy="100%" r="90%">
-                            <stop stopColor="#f7f4fc" offset="0">
+                        <radialGradient id="wealthGrad" cx="50%" cy="100%" r="70%">
+                            <stop stopColor="#4a5157" offset="0">
                             </stop>
-                            <stop stopColor="#bca7e3" offset="0">
-                                <animate attributeName="offset" dur=".5s" values="0;.20;.40;.60;.80;.95;" fill="freeze" />
+                            <stop stopColor="#2b2f32" offset="0">
+                                <animate attributeName="offset" dur=".3s" values="0;.20;.40;.60;.80;.95;"
+                                         fill="freeze"/>
                             </stop>
                         </radialGradient>
                     </defs>
@@ -84,7 +85,7 @@ class WealthMeter extends Component {
                         })
                     }
                     <path
-                        fill="url(#purpleGrad)"
+                        fill="url(#wealthGrad)"
                         d={`M${centerX},${centerY} l${centerY - GAP},0 A${centerX},${centerY} 0 0,0 ${innerCircle.x},${innerCircle.y} z`}
                     />
                     <text

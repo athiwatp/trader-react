@@ -107,7 +107,7 @@ class RadialProgress extends Component {
                 <g id="needle" className="needle">
                     <polygon
                         className="point"
-                        points="60,55 60,65 120,60"
+                        points="60,50 60,70 120,60"
                     >
                         <animateTransform
                             attributeName="transform"

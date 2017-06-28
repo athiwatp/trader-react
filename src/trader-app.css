@@ -33,14 +33,3 @@
     color: #e74c3c;
 }
 
-.app-title {
-    font-size: 1.2rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 2pt;
-}
-
-.app-title a {
-    text-decoration: none;
-    color: purple;
-}

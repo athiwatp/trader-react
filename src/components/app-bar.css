@@ -8,6 +8,18 @@
     align-self: center;
 }
 
+.app-title {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2pt;
+}
+
+.app-title a {
+    text-decoration: none;
+    color: gold;
+}
+
 .portfolio-actions {
     text-align: right;
     padding: 5px;
@@ -25,7 +37,7 @@
 .portfolio-actions button {
     border: none;
     background-color: transparent;
-    color: purple;
+    color: gold;
 }
 
 .portfolio-actions [class^="icon-"],
