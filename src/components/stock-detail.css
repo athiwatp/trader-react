@@ -1,20 +1,34 @@
 .stock-detail {
     display: flex;
+    background-color: #2b2346;
+    color: #dc3a79;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    max-height: 140px;
+    height: 140px;
 }
 
 .stock-detail .column {
     flex: 1;
+    align-self: center;
     text-align: center;
 }
 
-.stock-detail .column:first-child {
-    padding-left: 20px;
+.stock-detail .symbol {
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+.stock-detail .current-price {
+    margin-top: 20px;
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-shadow: 0 0 5px #000;
 }
 
-.stock-detail .column:last-child {
-    padding-right: 20px;
+.stock-detail .price-change {
+    margin-top: 20px;
 }
 
-.stock-detail .line-items li {
-    margin-top: 15px;
-}

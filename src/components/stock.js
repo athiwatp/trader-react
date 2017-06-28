@@ -37,49 +37,16 @@ class StockDetail extends Component {
 
         return (
             <div className="stock-detail">
-                <div className="investment column">
-                    <ul className="line-items">
-                        <li>
-                            <p className="bought-price">
-                                {Utils.currency(stock.price)}
-                            </p>
-                        </li>
-                        <li>
-                            <p className="cost">
-                                {Utils.currency(data.cost)}
-                            </p>
-                        </li>
-                        <li>
-                            <p className="age">
-                                {data.daysOld} days ago
-                            </p>
-                        </li>
-                    </ul>
+                <div className="primary column">
+                    <p className="symbol">{stock.symbol}</p>
+                    <p className="current-price">{stock.currentPrice}</p>
+                    <p className={data.priceChangeClassNames}>{stock.change}</p>
                 </div>
-                <div className="details column">
+                <div className="hero column">
                     <RadialProgress className="profit-meter" value={data.profitPercent}/>
-                    <div className="content">
-
-                    </div>
                 </div>
-                <div className="return column">
-                    <ul className="line-items">
-                        <li>
-                            <p className={data.profitChangeClassNames}>
-                                {data.profitPercent}%
-                            </p>
-                        </li>
-                        <li>
-                            <p className="current-value">
-                                {Utils.currency(data.value)}
-                            </p>
-                        </li>
-                        <li>
-                            <p className={data.profitChangeClassNames}>
-                                {Utils.currency(data.profit)}
-                            </p>
-                        </li>
-                    </ul>
+                <div className="secondary column">
+
                 </div>
             </div>
         )

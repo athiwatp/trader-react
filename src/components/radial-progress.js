@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import classnames from "classnames";
-import Utils from "../utils";
 import "./radial-progress.css";
 
 class RadialProgress extends Component {
@@ -20,10 +19,10 @@ class RadialProgress extends Component {
             val = 100;
         }
 
-        let progressColor = (val < 0) ? '#e74c3c' : '#27ae60';
+        let progressColor = (val < 0) ? '#FF4136' : '#2ECC40';
         let offset = this.calcProgressOffset(val / 200);
 
-        let needleAngle = (180 * val) / 100;
+        let needleAngle = (270 * val) / 100;
         let radialTicks = [];
         for (let i = 0; i <= 360; i += 10) {
             radialTicks.push(i);
@@ -33,6 +32,10 @@ class RadialProgress extends Component {
                 <defs>
                     <line id="tick" x1="104" y1="60" x2="110" y2="60"
                           strokeLinecap={'round'}/>
+                    <radialGradient id="radialCenter" cx="50%" cy="50%" r="50%">
+                        <stop stopColor="#dc3a79" offset="0"/>
+                        <stop stopColor="#241d3b" offset="1"/>
+                    </radialGradient>
                 </defs>
                 <g id="points">
                     {
@@ -57,19 +60,11 @@ class RadialProgress extends Component {
                     </text>
                     <text className="tickLabel" x={50} y={93} textAnchor="middle" transform="rotate(90 53,95)">50</text>
                 </g>
-                <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" strokeWidth="12"/>
+                <circle cx="60" cy="60" r="54" fill="none" stroke="#fff" strokeWidth="12"/>
                 <circle cx="60" cy="60" r="54" fill="none" stroke={progressColor} strokeWidth="12"
                         strokeDasharray="339.292" strokeDashoffset={offset}/>
                 <g id="needle">
-                    <line
-                        x1="60"
-                        y1="60"
-                        x2="120"
-                        y2="60"
-                        stroke="#5a5a5a"
-                        strokeWidth={2}
-                        strokeLinecap={'round'}
-                    >
+                    <polygon points="57,60 65,58 60,0" fill="yellow">
                         <animateTransform
                             attributeName="transform"
                             type="rotate"
@@ -78,11 +73,11 @@ class RadialProgress extends Component {
                             dur=".5s"
                             fill="freeze"
                         />
-                    </line>
-                    <circle cx="60" cy="60" r="20" fill="#cacaca"/>
+                    </polygon>
+                    <circle cx="60" cy="60" r="20" fill="url(#radialCenter)" stroke="yellow" strokeWidth={2}/>
                 </g>
-                <text x="60" y="65" fill="#000" textAnchor="middle" transform="rotate(90 60,60)">
-                    {val}
+                <text x="60" y="65" fill="#000" textAnchor="middle" transform="rotate(90 60,60)" className="value">
+                    {this.props.value}
                 </text>
             </svg>
         );

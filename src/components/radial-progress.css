@@ -3,15 +3,23 @@
 }
 
 .radial-progress .tick {
-    stroke: #cacaca;
+    stroke: #dc3a79;
+    opacity: .3;
 }
 
 .radial-progress .tick.quarterTick {
-    stroke: #888;
+    stroke: #dc3a79;
     stroke-width: 2;
+    opacity: 1;
 }
 
 .radial-progress .tickLabel {
-    font-size: .8rem;
-    fill: #aeaeae;
+    font-size: .6rem;
+    fill: #aaa;
+    opacity: .3;
+}
+
+.radial-progress .value {
+    fill: #fff;
+    font-size: .9rem;
 }
