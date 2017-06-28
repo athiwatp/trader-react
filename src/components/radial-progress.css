@@ -1,3 +1,16 @@
 .radial-progress {
     transform: rotate(-90deg);
 }
+
+.radial-progress .tick {
+    stroke: #cacaca;
+}
+
+.radial-progress .tick.quarterTick {
+    stroke: #888;
+    stroke-width: 2;
+}
+
+.radial-progress .tickLabel {
+    font-size: .8rem;
+}
