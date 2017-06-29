@@ -182,7 +182,7 @@ class TraderApp extends Component {
 
     render() {
         return (
-            <Router>
+            <Router basename="/trader">
                 <div className="app">
 
                     <AppBar
