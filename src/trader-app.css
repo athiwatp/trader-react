@@ -1,8 +1,7 @@
 .app-root,
 .app {
-    position: absolute;
-    min-height: 100%;
-    min-width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .app {

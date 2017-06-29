@@ -53,6 +53,18 @@ html {
     width: 100%;
 }
 
+input:required {
+    box-shadow: none;
+}
+
+input:invalid {
+    box-shadow: none;
+}
+
+button {
+    cursor: pointer;
+}
+
 body {
     background-color: #2b2f32;
     min-width: 100%;

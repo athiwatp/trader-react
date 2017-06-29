@@ -9,6 +9,7 @@ import Overlay from "./components/overlay";
 import StockForm from "./components/stock-form";
 import Portfolio from "./components/portfolio";
 import {EMPTY_STOCK, STOCK_MODE} from "./data/constants";
+import SAMPLE_STOCKS from "./data/sample-stocks";
 
 const STORAGE_KEY = 'traderState';
 const GOOGLE_FINANCE = 'https://finance.google.com/finance/info?q=';
@@ -111,6 +112,13 @@ class TraderApp extends Component {
         });
     }
 
+    samplePortfolio = () => {
+        SAMPLE_STOCKS.forEach((stock) => {
+            this.saveTransaction(stock);
+        });
+    }
+
+
     syncToStorage = (state) => {
         state = state || this.state;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -198,6 +206,7 @@ class TraderApp extends Component {
                             onEditStock={this.editStockForm}
                             onDeleteStock={this.deleteStock}
                             onToggleStockMode={this.toggleStockMode}
+                            onSamplePortfolio={this.samplePortfolio}
                         />}/>
                     </div>
                     <Overlay

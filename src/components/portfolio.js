@@ -8,8 +8,13 @@ class EmptyPortfolio extends Component {
     render() {
         return (
             <div className="empty-portfolio">
-                Add stocks to your portfolio
-                <button onClick={this.props.onAddStock}> Add Stock</button>
+                <p className="intro">Simple App to track your stocks.</p>
+                <div className="instruction">
+                    <p> Start with </p>
+                    <button onClick={this.props.onSamplePortfolio}> Sample Portfolio</button>
+                    <p>or, Add stock to your portfolio.</p>
+                    <button onClick={this.props.onAddStock}> Add Stock</button>
+                </div>
             </div>
         )
     }
