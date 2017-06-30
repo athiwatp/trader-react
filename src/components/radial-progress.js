@@ -114,7 +114,7 @@ class RadialProgress extends Component {
                             type="rotate"
                             from={`0 60 60`}
                             to={`${needleAngle} ${60} ${60}`}
-                            dur=".5s"
+                            dur="0.5s"
                             fill="freeze"
                         />
                     </polygon>

@@ -7,7 +7,7 @@
 }
 
 .overlay.open {
-    transition: background-color .5s;
+    transition: background-color 0.5s;
 }
 
 .overlay .wrapper {
@@ -22,7 +22,7 @@
     height: 100%;
     display: flex;
     background-color: rgba(0, 0, 0, .5);
-    transition: background-color .5s;
+    transition: background-color 0.5s;
 }
 
 .overlay.closing {

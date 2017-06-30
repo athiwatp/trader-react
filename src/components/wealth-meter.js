@@ -56,7 +56,7 @@ class WealthMeter extends Component {
                             <stop stopColor="#4a5157" offset="0">
                             </stop>
                             <stop stopColor="#2b2f32" offset="0">
-                                <animate attributeName="offset" dur=".3s" values="0;.20;.40;.60;.80;.95;"
+                                <animate attributeName="offset" dur="0.3s" values="0;.20;.40;.60;.80;.95;"
                                          fill="freeze"/>
                             </stop>
                         </radialGradient>
@@ -76,7 +76,7 @@ class WealthMeter extends Component {
                                         type="rotate"
                                         from={`0 ${centerX} ${centerY}`}
                                         to={`${-angles[idx]} ${centerX} ${centerY}`}
-                                        dur=".5s"
+                                        dur="0.5s"
                                         fill="freeze"
                                     />
                                 </path>

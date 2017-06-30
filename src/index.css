@@ -76,12 +76,12 @@ input:focus {
 }
 
 .animated {
-    animation-duration: .2s;
+    animation-duration: 0.2s;
     animation-fill-mode: both;
 }
 
 .animated.slow {
-    animation-duration: .5s;
+    animation-duration: 0.5s;
 }
 
 @keyframes slideInUp {
