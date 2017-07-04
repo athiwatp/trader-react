@@ -1,7 +1,10 @@
 import React, {Component} from "react";
+import AutoSuggest from "react-autosuggest";
 import "./stock-form.css";
+import "./auto-suggest.css";
 import InlineSelect from "./inline-select";
 import {ACTIONS, EMPTY_STOCK, EXCHANGES} from "../data/constants";
+import NSE_SYMBOLS from "../data/nse-symbols";
 
 class StockForm extends Component {
 
@@ -10,7 +13,8 @@ class StockForm extends Component {
 
         this.state = {
             closing: false,
-            stock: Object.assign({}, EMPTY_STOCK, props.stock)
+            stock: Object.assign({}, EMPTY_STOCK, props.stock),
+            nseSuggestions: []
         };
     }
 
@@ -62,8 +66,54 @@ class StockForm extends Component {
         })
     }
 
+    getNSESuggestions = (value) => {
+        const inputValue = value.trim().toLowerCase();
+        const inputLen = inputValue.length;
+
+        return inputLen === 0 ? [] : NSE_SYMBOLS.filter((sym) => {
+            return (sym.symbol.toLowerCase().slice(0, inputLen) === inputValue
+            || sym.security.toLowerCase().slice(0, inputLen) === inputValue)
+        }).slice(0, 3);
+    }
+
+    getNSESuggestionValue = (suggestion) => suggestion.symbol
+
+    renderSuggestion = (suggestion) => (
+        <div className="symbol-suggestion"><strong>{suggestion.symbol}</strong><em>{suggestion.security}</em></div>
+    )
+
+    onSuggestionsFetchRequested = ({value}) => {
+        this.setState({
+            nseSuggestions: this.getNSESuggestions(value)
+        })
+    }
+
+    onSuggestionsClearRequested = () => {
+        this.setState({
+            nseSuggestions: []
+        })
+    }
+
+    onSuggestionSelected = (e, {suggestionValue, method}) => {
+        e.preventDefault();
+        let stock = this.state.stock;
+        stock.symbol = suggestionValue;
+        this.setState({
+            stock
+        });
+    }
+
     render() {
         let stock = this.state.stock;
+        let symbolProps = {
+            id: "symbol",
+            type: "text",
+            value: stock.symbol,
+            onChange: this.handleInputChange,
+            placeholder: "Symbol",
+            className: "symbol",
+            required: 'required'
+        };
         return (
             <div className="stock-form">
                 <form onSubmit={this.saveForm}>
@@ -97,15 +147,15 @@ class StockForm extends Component {
                         </li>
                         <li className="field">
                             <div className="input-field">
-                                <input
-                                    id="symbol"
-                                    type="text"
-                                    value={stock.symbol}
-                                    onChange={this.handleInputChange}
-                                    placeholder="Symbol"
-                                    className="symbol"
-                                    pattern="[a-zA-Z]+"
-                                    required='required'
+                                <AutoSuggest
+                                    class={'symbols-suggest'}
+                                    suggestions={this.state.nseSuggestions}
+                                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                    onSuggestionSelected={this.onSuggestionSelected}
+                                    getSuggestionValue={this.getNSESuggestionValue}
+                                    renderSuggestion={this.renderSuggestion}
+                                    inputProps={symbolProps}
                                 />
                             </div>
                         </li>

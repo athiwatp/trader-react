@@ -1,0 +1,17 @@
+
+.react-autosuggest__suggestions-container {
+    position: absolute;
+    background-color: #212121;
+    color: #eaeaea;
+    width: 300px;
+}
+
+.react-autosuggest__suggestion {
+    padding: 5px;
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+.react-autosuggest__suggestion--highlighted {
+    background-color: #000000;
+}

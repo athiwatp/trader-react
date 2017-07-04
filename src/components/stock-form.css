@@ -62,3 +62,14 @@
     margin-right: 20px;
     color: #4d4d4d;
 }
+
+.symbol-suggestion strong {
+    display: block;
+    color: #eaeaea;
+}
+
+.symbol-suggestion em {
+    color: #9a9a9a;
+    font-size: .7rem;
+    margin-top: 3px;
+}
