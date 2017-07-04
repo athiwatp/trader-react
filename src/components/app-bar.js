@@ -23,6 +23,9 @@ class AppBar extends Component {
                 </h1>
                 <ul className="portfolio-actions column">
                     <li>
+                        <button onClick={this.props.onReload}><span className="icon-refresh"/><i>refresh</i> </button>
+                    </li>
+                    <li>
                         {toggleElm}
                     </li>
                     <li>

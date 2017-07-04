@@ -1,44 +1,53 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?p02kk9');
-  src:  url('fonts/icomoon.eot?p02kk9#iefix') format('embedded-opentype'),
-  url('fonts/icomoon.ttf?p02kk9') format('truetype'),
-  url('fonts/icomoon.woff?p02kk9') format('woff'),
-  url('fonts/icomoon.svg?p02kk9#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?8zehrj');
+    src: url('fonts/icomoon.eot?8zehrj#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?8zehrj') format('truetype'),
+    url('fonts/icomoon.woff?8zehrj') format('woff'),
+    url('fonts/icomoon.svg?8zehrj#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-refresh:before {
+    content: "\f021";
 }
 
 .icon-plus-circle:before {
-  content: "\f055";
+    content: "\f055";
 }
+
 .icon-expand:before {
-  content: "\f065";
+    content: "\f065";
 }
+
 .icon-compress:before {
-  content: "\f066";
+    content: "\f066";
 }
+
 .icon-calendar:before {
-  content: "\f073";
+    content: "\f073";
 }
+
 .icon-money:before {
-  content: "\f0d6";
+    content: "\f0d6";
 }
+
 .icon-database:before {
-  content: "\f1c0";
+    content: "\f1c0";
 }

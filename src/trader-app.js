@@ -180,6 +180,10 @@ class TraderApp extends Component {
         }
     }
 
+    reload = () => {
+        this.fetchMarketData();
+    }
+
     guid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             // eslint-disable-next-line
@@ -197,6 +201,7 @@ class TraderApp extends Component {
                         stockMode={this.state.stockMode}
                         onAddStock={this.addStockForm}
                         onToggleStockMode={this.toggleStockMode}
+                        onReload={this.reload}
                     />
                     <div className="content">
                         <Route exact path="/" render={() => <Portfolio
