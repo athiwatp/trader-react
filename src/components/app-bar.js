@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Logo from './logo';
 import {Link} from "react-router-dom";
 import {STOCK_MODE} from '../data/constants';
 
@@ -19,7 +20,7 @@ class AppBar extends Component {
         return (
             <header className="app-bar">
                 <h1 className="app-title column">
-                    <Link to="/">Trader</Link>
+                    <Logo onClick={this.props.onReload}/>
                 </h1>
                 <ul className="portfolio-actions column">
                     <li>

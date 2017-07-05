@@ -17,7 +17,7 @@
 
 .app-title a {
     text-decoration: none;
-    color: gold;
+    color: #D4AF37;
 }
 
 .portfolio-actions {
@@ -37,7 +37,7 @@
 .portfolio-actions button {
     border: none;
     background-color: transparent;
-    color: gold;
+    color: #D4AF37;
 }
 
 .portfolio-actions [class^="icon-"],

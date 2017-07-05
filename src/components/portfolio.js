@@ -8,7 +8,7 @@ class EmptyPortfolio extends Component {
     render() {
         return (
             <div className="empty-portfolio">
-                <p className="intro">Simple App to track your stocks.</p>
+                <p className="intro">(NSE) portfolio tracker.</p>
                 <div className="instruction">
                     <p> Start with </p>
                     <button onClick={this.props.onSamplePortfolio}> Sample Portfolio</button>
