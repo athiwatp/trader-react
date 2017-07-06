@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'icomoon';
-    src: url('fonts/icomoon.eot?8zehrj');
-    src: url('fonts/icomoon.eot?8zehrj#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?8zehrj') format('truetype'),
-    url('fonts/icomoon.woff?8zehrj') format('woff'),
-    url('fonts/icomoon.svg?8zehrj#icomoon') format('svg');
+    src:  url('fonts/icomoon.eot?kdlfuz');
+    src:  url('fonts/icomoon.eot?kdlfuz#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?kdlfuz') format('truetype'),
+    url('fonts/icomoon.woff?kdlfuz') format('woff'),
+    url('fonts/icomoon.svg?kdlfuz#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -27,27 +27,21 @@
 .icon-refresh:before {
     content: "\f021";
 }
-
 .icon-plus-circle:before {
     content: "\f055";
 }
-
 .icon-expand:before {
     content: "\f065";
 }
-
 .icon-compress:before {
     content: "\f066";
 }
-
-.icon-calendar:before {
-    content: "\f073";
-}
-
 .icon-money:before {
     content: "\f0d6";
 }
-
 .icon-database:before {
     content: "\f1c0";
+}
+.icon-calendar-plus-o:before {
+    content: "\f271";
 }

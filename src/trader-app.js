@@ -23,7 +23,7 @@ class TraderApp extends Component {
             stockMode: STOCK_MODE.DETAIL
         }, this.syncFromStorage(), {
             formMode: '',
-            showForm: false,
+            showForm: true,
             stockToEdit: EMPTY_STOCK
         });
 

@@ -42,6 +42,29 @@ class StockForm extends Component {
         })
     }
 
+    ddmmyy = () => {
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1; //January is 0!
+
+        let yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        return dd + '/' + mm + '/' + yyyy;
+    }
+
+    fillToday = () => {
+        let stock = this.state.stock;
+        stock.date = this.ddmmyy();
+        this.setState({
+            stock
+        });
+    }
+
     handleInputChange = (e) => {
         let stock = {};
         stock[e.target.id] = e.target.value;
@@ -188,7 +211,7 @@ class StockForm extends Component {
                             </div>
                         </li>
                         <li className="field">
-                            <div className="input-field">
+                            <div className="input-field stock-date">
                                 <input
                                     id="date"
                                     type="text"
@@ -199,6 +222,7 @@ class StockForm extends Component {
                                     pattern="\d{1,2}/\d{1,2}/\d{4}"
                                     required='required'
                                 />
+                                <span className="icon-calendar-plus-o today" onClick={this.fillToday}/>
                             </div>
                         </li>
                     </ul>
