@@ -142,9 +142,6 @@ class Stock extends Component {
                     this.props.stockMode === STOCK_MODE.DETAIL ? <StockDetail data={data}/> :
                         <StockSummary data={data}/>
                 }
-                <ul className="actions">
-                    <li onClick={this.deleteStock}>✕</li>
-                </ul>
             </div>
         )
     }

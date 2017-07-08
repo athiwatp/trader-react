@@ -93,6 +93,7 @@ class TraderApp extends Component {
         this.setState({
             stocks: stocks
         }, () => {
+            this.closeStockForm();
             this.syncToStorage(this.state);
         });
 
@@ -223,6 +224,7 @@ class TraderApp extends Component {
                             mode={this.state.formMode}
                             stock={this.state.stockToEdit}
                             onSave={this.saveTransaction}
+                            onDelete={this.deleteStock}
                             onClose={this.closeStockForm}
                         />
                     </Overlay>

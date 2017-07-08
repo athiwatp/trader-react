@@ -36,6 +36,11 @@ class StockForm extends Component {
         this.props.onClose();
     }
 
+    deleteStock = (e) => {
+        e.preventDefault();
+        this.props.onDelete(this.props.stock.id);
+    }
+
     clearForm = () => {
         this.setState({
             stock: EMPTY_STOCK
@@ -137,6 +142,9 @@ class StockForm extends Component {
             className: "symbol",
             required: 'required'
         };
+        let mode = this.props.mode;
+        let deleteElm = (
+            <button className="alternate" onClick={this.deleteStock}><span className="icon-trash-o"/> Delete</button>);
         return (
             <div className="stock-form">
                 <form onSubmit={this.saveForm}>
@@ -227,8 +235,11 @@ class StockForm extends Component {
                         </li>
                     </ul>
                     <div className="cta-buttons">
+                        {
+                            mode === 'edit' ? deleteElm : null
+                        }
                         <button className="secondary" onClick={this.cancelForm}>Cancel</button>
-                        <button className="primary" type="submit">{this.props.mode === 'edit' ? 'Save' : 'Add'}</button>
+                        <button className="primary" type="submit">{mode === 'edit' ? 'Save' : 'Add'}</button>
                     </div>
                 </form>
             </div>

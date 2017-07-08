@@ -41,6 +41,7 @@
 }
 
 .stock-form .cta-buttons {
+    position: relative;
     text-align: right;
     padding: 20px;
     background-color: #838e94;
@@ -63,6 +64,17 @@
     color: #4d4d4d;
 }
 
+.cta-buttons .alternate {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    border: none;
+    background-color: transparent;
+    font-size: .9rem;
+    transform: translateY(-50%);
+    color: #4d4d4d;
+}
+
 .symbol-suggestion strong {
     display: block;
     color: #eaeaea;
@@ -78,3 +90,4 @@
     margin: 0 5px 0 -20px;
     font-size: 1.2rem;
 }
+
