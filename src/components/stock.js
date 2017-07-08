@@ -5,6 +5,7 @@ import "./stock-summary.css";
 import "./stock-detail.css";
 import Utils from "../utils";
 import {STOCK_MODE} from "../data/constants";
+import NSE_SYMBOLS from "../data/nse-symbols";
 import RadialProgress from "./radial-progress";
 
 class StockSummary extends Component {
@@ -31,30 +32,41 @@ class StockSummary extends Component {
 }
 
 class StockDetail extends Component {
+
+    getSecurityName = () => {
+        let symbol = this.props.data.stock.symbol;
+        return (NSE_SYMBOLS.find((nseSymbol) => nseSymbol.symbol === symbol)).security;
+    }
+
     render() {
         let data = this.props.data;
         let stock = data.stock;
         return (
             <div className="stock-detail">
-                <div className="primary column">
-                    <p className="symbol">{stock.symbol}</p>
-                    <p className="current-price">{stock.currentPrice}</p>
-                    <p className={data.priceChangeClassNames}>{stock.change}</p>
+                <div className="columns">
+                    <div className="primary column">
+                        <p className="symbol">{stock.symbol}</p>
+                        <p className="current-price">{stock.currentPrice}</p>
+                        <p className={data.priceChangeClassNames}>{stock.change}</p>
+                    </div>
+                    <div className="hero column">
+                        <RadialProgress className="profit-meter" value={data.profitPercent}/>
+                    </div>
+                    <div className="secondary column">
+                        <p className="investment">
+                            <em>
+                                <span className="icon-database"/> {stock.quantity}
+                            </em>
+                            <em>
+                                <span className="icon-money"/> {Utils.currency(stock.price) }
+                            </em>
+                        </p>
+                        <p className="current-worth">{Utils.currency(data.value)}</p>
+                        <p className={data.profitChangeClassNames}>{data.profit.toLocaleString()}</p>
+                    </div>
                 </div>
-                <div className="hero column">
-                    <RadialProgress className="profit-meter" value={data.profitPercent}/>
-                </div>
-                <div className="secondary column">
-                    <p className="investment">
-                        <em>
-                            <span className="icon-database"/> {stock.quantity}
-                        </em>
-                        <em>
-                            <span className="icon-money"/> {Utils.currency(stock.price) }
-                        </em>
-                    </p>
-                    <p className="current-worth">{Utils.currency(data.value)}</p>
-                    <p className={data.profitChangeClassNames}>{data.profit.toLocaleString()}</p>
+                <div className="title">
+                    <p>{this.getSecurityName()}</p>
                 </div>
             </div>
         )

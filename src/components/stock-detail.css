@@ -1,12 +1,15 @@
 .stock-detail {
-    display: flex;
     margin: 0 auto;
     width: 90%;
     border-radius: 5px;
-    max-height: 140px;
-    height: 140px;
     background-color: #3b4044;
     color: #9d9d9d;
+}
+
+.stock-detail .columns {
+    display: flex;
+    max-height: 140px;
+    height: 140px;
 }
 
 .stock-detail .column {
@@ -48,4 +51,13 @@
 
 .investment em:last-child {
     margin-right: 0;
+}
+
+.title {
+    text-align: center;
+    font-size: .7rem;
+    padding: 5px 0;
+    letter-spacing: 1pt;
+    color: #626b71;
+    text-transform: uppercase;
 }
