@@ -29,23 +29,23 @@ class StockForm extends Component {
         let txn = Object.assign({}, this.state.stock);
         this.clearForm();
         this.props.onSave(txn);
-    }
+    };
 
     cancelForm = (e) => {
         e.preventDefault();
         this.props.onClose();
-    }
+    };
 
     deleteStock = (e) => {
         e.preventDefault();
         this.props.onDelete(this.props.stock.id);
-    }
+    };
 
     clearForm = () => {
         this.setState({
             stock: EMPTY_STOCK
         })
-    }
+    };
 
     ddmmyy = () => {
         let today = new Date();
@@ -60,7 +60,7 @@ class StockForm extends Component {
             mm = '0' + mm;
         }
         return dd + '/' + mm + '/' + yyyy;
-    }
+    };
 
     fillToday = () => {
         let stock = this.state.stock;
@@ -68,7 +68,7 @@ class StockForm extends Component {
         this.setState({
             stock
         });
-    }
+    };
 
     handleInputChange = (e) => {
         let stock = {};
@@ -76,7 +76,7 @@ class StockForm extends Component {
         this.setState({
             stock: Object.assign({}, this.state.stock, stock)
         });
-    }
+    };
 
     handleActionSelect = (selected) => {
         this.setState({
@@ -84,7 +84,7 @@ class StockForm extends Component {
                 action: selected
             })
         })
-    }
+    };
 
     handleExchangeSelect = (selected) => {
         this.setState({
@@ -92,7 +92,7 @@ class StockForm extends Component {
                 exchange: selected
             })
         })
-    }
+    };
 
     getNSESuggestions = (value) => {
         const inputValue = value.trim().toLowerCase();
@@ -101,26 +101,55 @@ class StockForm extends Component {
         return inputLen === 0 ? [] : NSE_SYMBOLS.filter((sym) => {
             return (sym.symbol.toLowerCase().slice(0, inputLen) === inputValue
             || sym.security.toLowerCase().slice(0, inputLen) === inputValue)
-        }).slice(0, 3);
-    }
+        }).slice(0, 2);
+    };
 
-    getNSESuggestionValue = (suggestion) => suggestion.symbol
+    getNSESuggestionValue = (suggestion) => suggestion.symbol;
 
-    renderSuggestion = (suggestion) => (
-        <div className="symbol-suggestion"><strong>{suggestion.symbol}</strong><em>{suggestion.security}</em></div>
-    )
+    highlightQuery = (str, query, className) => {
+        let queryRegExp = new RegExp(query, 'gi');
+        let splitParts = str.split(queryRegExp);
+        let parts = [];
+        let noOfParts = splitParts.length;
+        for (let i = 0; i < noOfParts; i++) {
+            parts.push(splitParts[i]);
+            if (i < (noOfParts - 1)) {
+                parts.push(query);
+            }
+        }
+        return (
+            <p className={className}>
+                {
+                    parts.map((part, idx) => {
+                        let className = '';
+                        if (part === query) {
+                            className = 'highlight';
+                        }
+                        return <span key={idx} className={className}>{part.toUpperCase()}</span>
+                    })
+                }
+            </p>
+        )
+    };
+
+    renderSuggestion = (suggestion, {query}) => (
+        <div className="symbol-suggestion">
+            {this.highlightQuery(suggestion.symbol, query, 'symbol')}
+            {this.highlightQuery(suggestion.security, query, 'security')}
+        </div>
+    );
 
     onSuggestionsFetchRequested = ({value}) => {
         this.setState({
             nseSuggestions: this.getNSESuggestions(value)
         })
-    }
+    };
 
     onSuggestionsClearRequested = () => {
         this.setState({
             nseSuggestions: []
         })
-    }
+    };
 
     onSuggestionSelected = (e, {suggestionValue, method}) => {
         e.preventDefault();
@@ -129,7 +158,7 @@ class StockForm extends Component {
         this.setState({
             stock
         });
-    }
+    };
 
     render() {
         let stock = this.state.stock;

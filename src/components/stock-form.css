@@ -75,12 +75,16 @@
     color: #4d4d4d;
 }
 
-.symbol-suggestion strong {
+.symbol-suggestion .symbol {
     display: block;
     color: #eaeaea;
 }
 
-.symbol-suggestion em {
+.symbol-suggestion .highlight {
+    color: gold;
+}
+
+.symbol-suggestion .security {
     color: #9a9a9a;
     font-size: .7rem;
     margin-top: 3px;
