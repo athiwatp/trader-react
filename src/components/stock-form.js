@@ -223,7 +223,7 @@ class StockForm extends Component {
                             <div className="input-field">
                                 <input
                                     id="price"
-                                    type="tel"
+                                    type="number"
                                     value={stock.price}
                                     onChange={this.handleInputChange}
                                     placeholder="Price"
@@ -237,7 +237,7 @@ class StockForm extends Component {
                             <div className="input-field">
                                 <input
                                     id="quantity"
-                                    type="tel"
+                                    type="number"
                                     value={stock.quantity}
                                     onChange={this.handleInputChange}
                                     placeholder="Quantity"
