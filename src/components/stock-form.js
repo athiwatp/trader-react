@@ -230,6 +230,7 @@ class StockForm extends Component {
                                     className="price"
                                     pattern="^\d{0,8}(\.\d{1,4})?$"
                                     required='required'
+                                    step={'0.01'}
                                 />
                             </div>
                         </li>
